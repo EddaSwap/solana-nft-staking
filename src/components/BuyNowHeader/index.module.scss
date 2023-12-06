@@ -1,0 +1,146 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  background-color: #000;
+  flex-direction: row;
+  justify-content: center;
+  padding: 40px 0px;
+
+  .left {
+    border-right: 1px solid #A93BC0 ;
+    flex: 1
+  }
+  .right {
+    padding-left: 20px;
+    flex: 1
+  }
+  .buyTitle {
+    margin: 0px 32px;
+    height: 79px;
+    font-family: Exo;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 72px;
+    line-height: 110%;
+    text-align: center;
+    /* or 79px */
+
+    letter-spacing: 0.02em;
+    color: #ffffff;
+  }
+
+  .points {
+    position: static;
+    height: 72px;
+    font-family: Exo;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 150%;
+    /* identical to box height, or 72px */
+
+    text-align: center;
+
+    /* Main/Dark/White */
+
+    color: #fcfcfd;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 16px;
+  }
+  .img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .desc {
+    font-family: Exo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 150%;
+    /* identical to box height, or 24px */
+
+    color: #ffffff;
+  }
+
+  .infoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0px 32px;
+    width: 200px;
+    min-height: 185px;
+    /* Main/Dark/Black More */
+
+    background: #23262f;
+    /* Shadow 1 */
+
+    box-shadow: 0px 64px 64px rgba(31, 47, 70, 0.12);
+    border-radius: 24px;
+  }
+
+  .pointContainer {
+    width: 450px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.instructionText {
+  font-family: Exo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 150%;
+  /* or 30px */
+
+  text-transform: uppercase;
+
+  color: #ffffff;
+
+  opacity: 0.5;
+}
+
+.instructionContainer {
+  margin: 0px 32px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.infoContainerWrapper {
+  display: flex;
+  justify-content: center;
+  background-color: #000;
+}
+
+.mobileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000;
+  padding: 40px 0px;
+
+  .mobileTitle {
+    font-family: Exo;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 72px;
+    line-height: 110%;
+    text-align: center;
+    /* or 79px */
+
+    letter-spacing: 0.02em;
+    color: #ffffff;
+  }
+}

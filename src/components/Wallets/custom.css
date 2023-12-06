@@ -1,0 +1,24 @@
+.MuiDialog-container .MuiDialogTitle-root {
+  background-color: #a93bc0 !important;
+  font-weight: 900;
+  color: #fff !important;
+}
+
+.MuiDialog-container .MuiListItem-root {
+  background-color: #fff;
+  border-bottom: solid 1px #ccc;
+}
+
+.wallet-connect .MuiButton-label {
+  font-weight: 900;
+  color: #fff;
+}
+
+.wallet-connect .MuiButton-containedPrimary {
+  background-color: #a93bc0 !important;
+  height: 50px !important;
+}
+
+.wallet-connect {
+  display: flex;
+}

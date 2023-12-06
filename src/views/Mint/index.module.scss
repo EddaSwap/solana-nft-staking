@@ -1,0 +1,33 @@
+.connect {
+  background-color: red;
+  color: #fff;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.another {
+  position: absolute;
+  top: 40px;
+  text-align: center;
+  cursor: pointer;
+  // width: 170px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.activeMint {
+  margin-left: 10px !important;
+  background-color: #a93bc0 !important;
+  height: 50px;
+
+  .mintTitle {
+    font-weight: 900;
+  }
+}
+
+.soldOut,
+.minting {
+  margin-left: 10px !important;
+  background-color: #808080 !important;
+  height: 50px;
+}

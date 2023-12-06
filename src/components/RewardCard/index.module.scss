@@ -1,0 +1,251 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+
+  width: 270px;
+  min-height: 460px;
+
+  //box-sizing: border-box;
+  background: #0e0e0e;
+  background-blend-mode: hard-light;
+  box-shadow: 0px 0px 72px 18px rgba(169, 59, 192, 0.35),
+    0px 7px 40px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 20px 30px;
+  position: relative;
+}
+
+.playVideoButton {
+  position: absolute;
+  cursor: pointer;
+  left: 0px;
+  bottom: 15px;
+}
+.nftImage {
+  width: 222px;
+  height: 263px;
+  border-radius: 8px;
+  object-fit: cover;
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 16px 0px;
+}
+
+.stakeButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+
+  width: 222px;
+  height: 48px;
+
+  background: #a93bc0;
+  border-width: 0;
+  border-radius: 16px;
+
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 16px 0px;
+
+  font-family: Exo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 150%;
+  /* identical to box height, or 24px */
+
+  text-transform: uppercase;
+
+  /* Main/Dark/White */
+
+  color: #fcfcfd;
+  cursor: pointer;
+}
+
+.buyButtonContainer {
+  display: flex;
+}
+.buyButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  
+  width: 110px;
+  height: 48px;
+
+  background: #a93bc0;
+  border-width: 0;
+  border-radius: 16px;
+
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 16px 5px;
+
+  font-family: Exo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 150%;
+  /* identical to box height, or 24px */
+
+  text-transform: uppercase;
+
+  /* Main/Dark/White */
+
+  color: #fcfcfd;
+  cursor: pointer;
+}
+
+
+.reward {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+
+  width: 222px;
+  height: 48px;
+
+  background: transparent;
+  border: 1.5px solid rgba(53, 57, 69, 1);
+  border-radius: 16px;
+
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 16px 0px;
+  font-family: Exo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 150%;
+  /* identical to box height, or 24px */
+
+  text-transform: uppercase;
+
+  /* Main/Dark/White */
+
+  color: #fcfcfd;
+  cursor: pointer;
+}
+
+.rewardInfoBoxContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.rewardInfoBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 15px;
+
+  // width: 222px;
+  // height: 48px;
+
+  background: transparent;
+  border: 1.5px solid rgba(53, 57, 69, 1);
+  border-radius: 16px;
+
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 16px 0px;
+
+  font-family: Exo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 150%;
+  /* identical to box height, or 24px */
+
+  text-transform: uppercase;
+
+  /* Main/Dark/White */
+
+  color: #fcfcfd;
+  cursor: pointer;
+}
+
+.collection {
+  position: static;
+  width: 222px;
+  height: 18px;
+
+  font-family: Exo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 150%;
+  /* identical to box height, or 18px */
+
+  text-align: center;
+
+  /* Main/Dark/Grey */
+
+  color: #777e90;
+
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 8px 0px;
+}
+
+.name {
+  width: 222px;
+  height: 24px;
+
+  font-family: Exo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 150%;
+  /* identical to box height, or 24px */
+
+  text-align: center;
+
+  /* Main/Dark/White */
+
+  color: #fcfcfd;
+
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 8px 0px;
+}

@@ -1,0 +1,162 @@
+.container {
+  max-width: 1440px;
+  min-height: 50vh;
+  margin: 0 auto;
+  padding: 120px 0px 100px 0px;
+
+  @media screen and (max-width: 960px) {
+    padding: 20px 0px 160px 0px;
+  }
+
+  .upper {
+    margin-bottom: 80px;
+
+    .headline {
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      margin-bottom: 40px;
+
+      .content {
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 52.8px;
+        color: #fff;
+        @media screen and (max-width: 960px) {
+          font-size: 32px;
+          line-height: 35.2px;
+        }
+      }
+
+      .totalStaked {
+        margin-top: 50px;
+        font-weight: normal;
+        font-style: italic;
+        font-size: 36px;
+        line-height: 52.8px;
+        color: #fff;
+        @media screen and (max-width: 960px) {
+          font-size: 32px;
+          line-height: 35.2px;
+        }
+      }
+
+      .rank {
+        margin-top: 5px;
+        font-weight: normal;
+        font-style: italic;
+        font-size: 36px;
+        line-height: 52.8px;
+        color: #fff;
+        @media screen and (max-width: 960px) {
+          font-size: 32px;
+          line-height: 35.2px;
+        }
+      }
+    }
+  }
+
+  .nftList {
+    display: flex;
+    flex-wrap: wrap;
+    
+    margin: 0px 50px;
+    // padding: 0 100px;
+    justify-content: center;
+  
+    @media screen and (max-width: 540px) {
+      padding: 0;
+      margin-top: 50px !important;
+    }
+  
+  }
+}
+
+.loading {
+  font-family: Exo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 150%;
+  /* identical to box height, or 21px */
+
+  text-transform: uppercase;
+
+  /* Main/Dark/White */
+  color: #fcfcfd;
+  margin: 0px 10px;
+}
+
+.loadingButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 120px;
+
+  width: 307px;
+  height: 45px;
+
+  border: 1.5px solid #a93bc0;
+  box-sizing: border-box;
+  border-radius: 100px;
+
+  /* Inside Auto Layout */
+  margin: 48px 0px;
+}
+
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.statContainer {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+
+  .tableWrapper { 
+    background-color: rgb(14, 14, 14);
+    padding: 60px;
+    border-radius: 24px;
+    
+  }
+  .statTable {
+    max-width: 800px;
+    margin : 40px;
+    border-radius: 24px;
+    background-color: rgb(14, 14, 14);
+    .statItem {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      
+      .userAddress {
+        color: white;
+  
+      }
+    }
+    .statTitle {
+      color: white;
+      position: relative;
+      padding: 0.9375rem;
+      font-weight: 900;
+      font-size: 20px;
+      font-style: normal;
+      text-transform: "uppercase";
+      line-height: "20.44px";
+      text-decoration: "none";
+      font-weight: bold;
+    }
+    .panigation {
+      width: 100%;
+      color: white !important;
+     
+     
+    }
+  }
+}

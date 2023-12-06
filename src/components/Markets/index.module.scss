@@ -1,0 +1,171 @@
+// .container {
+//   max-width: 1440px;
+//   margin: 0 auto;
+//   padding: 120px 0px 100px 0px;
+
+//   @media screen and (max-width: 960px) {
+//     padding: 20px 0px 160px 0px;
+//   }
+
+//   .upper {
+//     margin-bottom: 80px;
+
+//     .headline {
+//       display: flex;
+//       text-align: center;
+//       flex-direction: column;
+//       margin-bottom: 40px;
+
+//       .content {
+//         font-weight: bold;
+//         font-size: 48px;
+//         line-height: 52.8px;
+//         color: #fff;
+//         @media screen and (max-width: 960px) {
+//           font-size: 32px;
+//           line-height: 35.2px;
+//         }
+//       }
+//     }
+//   }
+
+//   .itemList {
+//     display: flex;
+//     flex-wrap: wrap;
+//     max-width: 800px;
+//     margin: 0px auto;
+//     // padding: 0 100px;
+//     justify-content: center;
+
+//     @media screen and (max-width: 960px) {
+//       padding: 0;
+//       margin-top: 50px !important;
+//     }
+
+//     .item {
+//       display: flex;
+//       flex-direction: row;
+//       justify-content: center;
+//       align-items: center;
+//       padding: 16px 36px;
+//       width: 268.5px;
+//       height: 64px;
+//       background: #0e0e0e;
+//       background-blend-mode: hard-light;
+//       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+//       border-radius: 16px;
+
+//       /* Inside Auto Layout */
+//       margin: 40px 40px;
+
+//       .marketContainer {
+//         display: flex;
+//         flex:1;
+//         align-items: center;
+//         justify-content: center;
+
+//         .marketImage {
+//           width: 32px;
+//           // height: 32px;
+//           margin-right: 16px;
+//         }
+//         .marketTextContainer {
+//           display: flex;
+//           align-items: center;
+//           justify-content: center;
+//         }
+//         .marketText {
+//           margin: 0px;
+//           text-align: center;
+//           font-family: Exo;
+//           font-style: normal;
+//           font-weight: 600;
+//           font-size: 20px;
+//           line-height: 100%;
+//           /* identical to box height, or 20px */
+
+//           text-transform: uppercase;
+
+//           color: #ffffff;
+//         }
+//       }
+//     }
+//   }
+
+//   .nftList {
+//     display: flex;
+//     flex-wrap: wrap;
+
+//     margin: 200px 50px;
+//     // padding: 0 100px;
+//     justify-content: center;
+
+//     @media screen and (max-width: 540px) {
+//       padding: 0;
+//       margin-top: 50px !important;
+//     }
+//   }
+// }
+
+.itemList {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0px auto;
+  // padding: 0 100px;
+  justify-content: center;
+
+  @media screen and (max-width: 960px) {
+    padding: 0;
+    margin-top: 50px !important;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 36px;
+    width: 268.5px;
+    height: 64px;
+    background: #0e0e0e;
+    background-blend-mode: hard-light;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+
+    /* Inside Auto Layout */
+    margin: 40px 40px;
+
+    .marketContainer {
+      display: flex;
+      flex:1;
+      align-items: center;
+      justify-content: center;
+
+      .marketImage {
+        width: 32px;
+        // height: 32px;
+        margin-right: 16px;
+      }
+      .marketTextContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .marketText {
+        margin: 0px;
+        text-align: center;
+        font-family: Exo;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 100%;
+        /* identical to box height, or 20px */
+
+        text-transform: uppercase;
+
+        color: #ffffff;
+      }
+    }
+  }
+}
