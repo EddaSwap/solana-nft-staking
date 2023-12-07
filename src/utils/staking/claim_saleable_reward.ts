@@ -21,6 +21,7 @@ import {
   findAssociatedTokenAddress,
   getExtendManagementKey,
   getStakerStorage,
+  getExtendStakerStorage,
 } from './services';
 const BN = require('bn.js');
 
@@ -50,6 +51,11 @@ async function claimBuyable(
   
   const stakerStorage = await getStakerStorage(programId, staker);
   
+  const extendStakerStoragePubkey = await getExtendStakerStorage(
+    programId,
+    staker,
+  );
+
   const data = Buffer.from(
     borsh.serialize(
       STAKE_CONTRACT_SCHEMA,
@@ -69,6 +75,7 @@ async function claimBuyable(
       { pubkey: keeper, isSigner: false, isWritable: true },
       { pubkey: keeperAta, isSigner: false, isWritable: true },
       { pubkey: stakerStorage, isSigner: false, isWritable: true },
+      { pubkey: extendStakerStoragePubkey, isSigner: false, isWritable: true },
       { pubkey: extendManagementStorage, isSigner: false, isWritable: true },
       { pubkey: SystemProgram.programId, isSigner: false, isWritable: false },
       { pubkey: SYSVAR_RENT_PUBKEY, isSigner: false, isWritable: false },

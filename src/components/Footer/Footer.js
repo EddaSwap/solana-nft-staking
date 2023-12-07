@@ -8,7 +8,6 @@ import classNames from "classnames";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-
 // @material-ui/icons
 
 import scssStyles from "./index.module.scss";
@@ -61,7 +60,7 @@ export default function Footer(props) {
             <i className={styles.socials + " fab fa-twitter"} /> TWITTER
           </a>
           <a
-            href="https://www.youtube.com/watch?v=xTfflnM2nDU"
+            href="https://www.youtube.com/c/MadTrooper/videos"
             target="_blank"
             rel="noopener noreferrer"
             className={scssStyles["social-btn"]}
@@ -77,12 +76,16 @@ export default function Footer(props) {
           </a>
         </div>
         <div className={classes.copyright}>
-          <a href="https://madtrooper.com/term-of-use" className={classes.termOfUse} target="_blank">
+          <a
+            href="https://madtrooper.com/term-of-use"
+            className={classes.termOfUse}
+            target="_blank"
+          >
             Terms of use
           </a>
           Copyright {1900 + new Date().getYear()} &copy;{" "}
-          <a href="https://eddaswap.com" className={aClasses} target="_blank">
-            MadTrooper by EDDASwap
+          <a href="https://eddaverse.com" className={aClasses} target="_blank">
+            MadTrooper by EDDAVerse
           </a>{" "}
         </div>
       </div>

@@ -47,7 +47,7 @@ const getTokenWallet = async (mintKey) => {
     
     for(let i = 0; i < addressList.length; i++ ) {
       const addressData = addressList[i];
-      if (addressData.amount == 1) {
+      if (parseInt(addressData.amount) === 1) {
         return addressData.address;
       }
     }
@@ -149,11 +149,11 @@ const getMetaData = async (mintKeys = []) => {
   return results;
 };
 
-const stakeNft = async ({ wallet, mintNFTPublicKey }) => {
+const stakeNft = async ({ wallet, mintNFTPublicKey, tokenType }) => {
   console.log('call api stakeNFT');
   
   const ataPublicKey = await getTokenWallet( mintNFTPublicKey);
-  return stake(connection, wallet, mintNFTPublicKey, ataPublicKey);
+  return stake(connection, wallet, mintNFTPublicKey, ataPublicKey, tokenType);
 };
 
 const unStakeNft = async ({ wallet, mintNFTPublicKey }) => {

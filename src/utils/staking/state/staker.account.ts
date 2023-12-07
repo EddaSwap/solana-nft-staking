@@ -3,6 +3,8 @@ import BN from 'bn.js';
 import * as borsh from 'borsh';
 import {extendBorsh} from './borsh';
 
+import {ExtendStakerStorage} from './extend_staker.account';
+
 export const STAKE_SIZE = 8 + 32 + 32 + 8;
 export const STAKER_STORAGE_SIZE = 32 + 8 + STAKE_SIZE * 100;
 
@@ -73,6 +75,39 @@ export class StakerStorage {
 
   totalPoints = () => {
     return this.signedPoints() + this.pendingPoints();
+  };
+
+  pendingPointsWithNftType = (extendStakerStorage: ExtendStakerStorage) => {
+    const DAY = 60 * 60 * 24;
+    const POINTS_PER_DAY = 1;
+
+    let points = 0;
+
+    this.stakes.forEach(stake => {
+      let nftType = 1;
+      const extendStake = extendStakerStorage.extend_stakes.find(
+        item => item.nft_address === stake.nft_address,
+      );
+      if (extendStake) {
+        nftType = extendStake.points_by_type.toNumber();
+      }
+
+      const stakeTime = stake.date_initialized.toNumber();
+      const nowInSec = Math.floor(Date.now() / 1000);
+
+      const stakeDays = Math.floor((nowInSec - stakeTime) / DAY);
+
+      const earnPoints = POINTS_PER_DAY * stakeDays * stake.amount.toNumber();
+      points += earnPoints * nftType;
+    });
+
+    return points;
+  };
+
+  totalPointsWithNftType = (extendStakerStorage: ExtendStakerStorage) => {
+    return (
+      this.signedPoints() + this.pendingPointsWithNftType(extendStakerStorage)
+    );
   };
 
   getStake = (_nft_address: string) => {

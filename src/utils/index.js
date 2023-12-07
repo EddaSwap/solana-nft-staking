@@ -53,10 +53,27 @@ function getWindowDimensions() {
 
 const MOBILE_WIDTH = 480;
 
+const POINT_TYPE_MAPPING = {
+  'Trooper': 0,
+  'Sergeant': 1,
+  'Commander': 2,
+  'Legendary Master': 3
+}
+
+const getNFTStakingType = (type = 'Trooper') =>{
+  let returnType = POINT_TYPE_MAPPING[type];
+  if(!returnType) {
+    returnType = POINT_TYPE_MAPPING['Trooper']; 
+  }
+
+  return returnType;
+}
+
 export { 
   getWindowDimensions,
   MOBILE_WIDTH,
   BUTTON_TYPE,
   getButtonText,
-  logError
+  logError,
+  getNFTStakingType,
 };

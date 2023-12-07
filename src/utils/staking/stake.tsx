@@ -20,6 +20,8 @@ import {
   findAssociatedTokenAddress,
   getManagementKey,
   getMetadataAddress,
+  getExtendStakerStorage,
+  getNftSettingKey,
 } from "./services";
 
 const BN = require("bn.js");
@@ -30,9 +32,16 @@ async function stakeNFT(
   connection: any,
   wallet: any,
   nftMintAccount: any,
-  ataPublicKey: any
+  ataPublicKey: any,
+  tokenType: Number = 0
 ) {
-  console.log(`Let's stake an nft`);
+
+  console.log(`Let's stake an nft`, {
+    nftMintAccount: nftMintAccount.toBase58(),
+    ataPublicKey: ataPublicKey.toBase58(),
+    tokenType
+  });
+  
   const staker = wallet.publicKey;
   const userAta = ataPublicKey;
   const programId = await checkProgram(connection);
@@ -51,17 +60,26 @@ async function stakeNFT(
 
   console.log(`Use staker storage: ${stakerStoragePubkey}`);
 
+  const extendStakerStoragePubkey = await getExtendStakerStorage(
+    programId,
+    staker,
+  );
+
   console.log("Keeper created:", keeper.toBase58());
   console.log(
     "Associated token account of keeper created",
     keeperAta.toBase58()
   );
 
+  const nftSettingKey = await getNftSettingKey(programId);
+  console.log(`Nft setting storage: ${nftSettingKey}`);
+
   const data = Buffer.from(
     borsh.serialize(
       STAKE_CONTRACT_SCHEMA,
       new StakeArgs({
         amount: new BN(TOKEN_AMOUNT),
+        nft_type: new BN(tokenType),
       })
     )
   );
@@ -77,7 +95,9 @@ async function stakeNFT(
       { pubkey: keeper, isSigner: false, isWritable: true },
       { pubkey: keeperAta, isSigner: false, isWritable: true },
       { pubkey: stakerStoragePubkey, isSigner: false, isWritable: true },
-      { pubkey: managementStoragePubkey, isSigner: false, isWritable: true },
+      { pubkey: extendStakerStoragePubkey, isSigner: false, isWritable: true },
+      { pubkey: nftSettingKey, isSigner: false, isWritable: false },
+      { pubkey: managementStoragePubkey, isSigner: false, isWritable: false },
       { pubkey: SystemProgram.programId, isSigner: false, isWritable: false },
       { pubkey: SYSVAR_RENT_PUBKEY, isSigner: false, isWritable: false },
       { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },

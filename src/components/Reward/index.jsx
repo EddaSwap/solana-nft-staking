@@ -37,13 +37,41 @@ const Reward = () => {
     [validRewardNftList]
   );
 
+  //add sold item
+  const finalNFTList = useMemo(() => {
+    const _list = mergedRewardNft || [];
+
+    for (let i = 0; i < SOLD_REWARD_NFT.length; i++) {
+      const soldItem = SOLD_REWARD_NFT[i];
+      let isAdd = true;
+
+      for (let j = 0; j < mergedRewardNft.length; j++) {
+        const rewardItem = mergedRewardNft[j];
+        if (
+          soldItem.metaData &&
+          rewardItem.metaData &&
+          soldItem.metaData.name === rewardItem.metaData.name
+        ) {
+          isAdd = false;
+          break;
+        }
+      }
+
+      if (isAdd) {
+        _list.push(soldItem);
+      }
+    }
+
+    return _list;
+  }, [mergedRewardNft]);
+
   if (isMobile) {
     return null;
   }
 
   let content = (
     <div className={styles.nftList}>
-      {[...mergedRewardNft, ...SOLD_REWARD_NFT].map((item, key) => {
+      {finalNFTList.map((item, key) => {
         return (
           <RewardCard
             currentProcessKey={currentClaimNFT}

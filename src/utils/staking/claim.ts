@@ -18,6 +18,7 @@ import { ClaimRewardTokenArgs, STAKE_CONTRACT_SCHEMA } from './state/contract';
 import {
     claimRewardToken_getAccounts,
     checkProgram,
+    getExtendStakerStorage,
 } from './services';
 
 const BN = require('bn.js');
@@ -51,6 +52,11 @@ async function claim(
         ataPublicKey
     );
 
+    const extendStakerStoragePubkey = await getExtendStakerStorage(
+        programId,
+        sender,
+    );
+
     const data = Buffer.from(
         borsh.serialize(
             STAKE_CONTRACT_SCHEMA,
@@ -71,6 +77,7 @@ async function claim(
             { pubkey: keeperAta, isSigner: false, isWritable: true },
             { pubkey: stakePubkey, isSigner: false, isWritable: true },
             { pubkey: stakerStorage, isSigner: false, isWritable: true },
+            { pubkey: extendStakerStoragePubkey, isSigner: false, isWritable: true},
             { pubkey: managementStorage, isSigner: false, isWritable: true },
             { pubkey: SystemProgram.programId, isSigner: false, isWritable: false },
             { pubkey: SYSVAR_RENT_PUBKEY, isSigner: false, isWritable: false },

@@ -9,6 +9,9 @@ import {
 } from '@solana/spl-token';
 
 import { STAKER_SEED, KEEPER_SEED } from './state/staker.account';
+import { EXTEND_STAKER_SEED } from './state/extend_staker.account';
+import { NFT_SETTING_SEED } from './state/nft_setting.account';
+
 import {
   REWARD_STAKE_SEED,
   REWARD_KEEPER_SEED,
@@ -169,7 +172,7 @@ export const getRewardStakeStorage = async (
   mint: PublicKey,
 ) => {
   const stakeSeeds = [Buffer.from(REWARD_STAKE_SEED), mint.toBuffer()];
-  const [stakePubkey, stakeNonce] = await PublicKey.findProgramAddress(
+  const [stakePubkey, ] = await PublicKey.findProgramAddress(
     stakeSeeds,
     programId,
   );
@@ -187,7 +190,7 @@ export const getNftKeeper = async (
     staker.toBuffer(),
     mint.toBuffer(),
   ];
-  const [keeper, nonce] = await PublicKey.findProgramAddress(
+  const [keeper, ] = await PublicKey.findProgramAddress(
     keeperSeeds,
     programId,
   );
@@ -200,7 +203,7 @@ export const getStakerStorage = async (
   staker: PublicKey,
 ) => {
   const stakerStorageSeeds = [Buffer.from(STAKER_SEED), staker.toBuffer()];
-  const [stakerStoragePubkey, stakeStorageNonce] =
+  const [stakerStoragePubkey, ] =
     await PublicKey.findProgramAddress(stakerStorageSeeds, programId);
 
   return stakerStoragePubkey;
@@ -224,7 +227,7 @@ export const getMetadataAddress = async (
 
 export const getExtendManagementKey = async (programId: PublicKey) => {
   const storageSeeds = [Buffer.from(EXTEND_MANAGEMENT_SEED)];
-  const [storagePubkey, stakeNonce] = await PublicKey.findProgramAddress(
+  const [storagePubkey, ] = await PublicKey.findProgramAddress(
     storageSeeds,
     programId,
   );
@@ -252,7 +255,7 @@ export const getStakerMadtrooperAta = async (
     ],
   });
 
-  if (res.data.result.value == 0) {
+  if (res.data.result.value === 0) {
     throw new Error('Staker not own madtrooper');
   }
 
@@ -271,4 +274,29 @@ export const getReceiverMadtrooperAta = async (
     const userAta = await findAssociatedTokenAddress(mad_owner, mad_address);
     return userAta;
   }
+};
+
+
+export const getNftSettingKey = async (programId: PublicKey) => {
+  const seeds = [Buffer.from(NFT_SETTING_SEED)];
+  const [pubKey, ] = await PublicKey.findProgramAddress(
+    seeds,
+    programId,
+  );
+
+  return pubKey;
+};
+
+export const getExtendStakerStorage = async (
+  programId: PublicKey,
+  staker: PublicKey,
+) => {
+  const stakerStorageSeeds = [
+    Buffer.from(EXTEND_STAKER_SEED),
+    staker.toBuffer(),
+  ];
+  const [extendStakerStoragePubkey, ] =
+    await PublicKey.findProgramAddress(stakerStorageSeeds, programId);
+
+  return extendStakerStoragePubkey;
 };

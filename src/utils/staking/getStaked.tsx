@@ -3,7 +3,10 @@ import {
   getStakerStoragePubkey,
 } from "./services";
 
-import getStakerData from "./getState/getStakerData";
+import {
+  getStakerData,
+  getPoints
+} from "./getState/getStakerData";
 
 async function getStakedNFT(connection: any, publicKey: any) {
   let userPoints = '0';
@@ -15,7 +18,6 @@ async function getStakedNFT(connection: any, publicKey: any) {
       initializer,
       programId
     );
-
     const stakerData = await getStakerData(
       connection,
       stakerStoragePubkey.toBase58()
@@ -23,7 +25,7 @@ async function getStakedNFT(connection: any, publicKey: any) {
 
     const { stakes } = stakerData;
 
-    userPoints = stakerData.totalPoints().toString();
+    userPoints = (await getPoints(connection, stakerData, initializer.toBase58())).toString();
     
     for (let i = 0; i < stakes.length; i++) {
       const stakeData = stakes[i];

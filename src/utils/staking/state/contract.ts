@@ -19,9 +19,11 @@ export class AddRewardTokenArgs {
 export class StakeArgs {
   instruction: number = 2;
   amount: BN;
+  nft_type: BN | null;
 
-  constructor(args: {amount: BN}) {
+  constructor(args: {amount: BN; nft_type?: BN}) {
     this.amount = args.amount;
+    this.nft_type = args.nft_type ? args.nft_type : null;
   }
 }
 
@@ -104,6 +106,15 @@ export class ReleaseRewardArgs {
   }
 }
 
+export class UpdatePointsByNftTypeArgs {
+  instruction: number = 13;
+  points_by_type: BN[];
+
+  constructor(args: {points_by_type: BN[]}) {
+    this.points_by_type = args.points_by_type;
+  }
+}
+
 export const STAKE_CONTRACT_SCHEMA = new Map<any, any>([
   [
     UpdateAuthorityArgs,
@@ -130,6 +141,7 @@ export const STAKE_CONTRACT_SCHEMA = new Map<any, any>([
       fields: [
         ['instruction', 'u8'],
         ['amount', 'u64'],
+        ['nft_type', {kind: 'option', type: 'u64'}],
       ],
     },
   ],
@@ -223,6 +235,16 @@ export const STAKE_CONTRACT_SCHEMA = new Map<any, any>([
       fields: [
         ['instruction', 'u8'],
         ['amount', {kind: 'option', type: 'u64'}],
+      ],
+    },
+  ],
+  [
+    UpdatePointsByNftTypeArgs,
+    {
+      kind: 'struct',
+      fields: [
+        ['instruction', 'u8'],
+        ['points_by_type', ['u64']],
       ],
     },
   ],

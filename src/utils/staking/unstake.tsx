@@ -19,6 +19,7 @@ import {
   getNftKeeper,
   getStakerStorage,
   findAssociatedTokenAddress,
+  getExtendStakerStorage,
 } from "./services";
 
 const BN = require("bn.js");
@@ -42,6 +43,10 @@ async function unstakeNFT(
   const keeperAta = await findAssociatedTokenAddress(keeper, nftMintAccount);
 
   const stakerStoragePubkey = await getStakerStorage(programId, staker);
+  const extendStakerStoragePubkey = await getExtendStakerStorage(
+    programId,
+    staker,
+  );
 
   console.log(`Use staker storage: ${stakerStoragePubkey}`);
 
@@ -60,6 +65,7 @@ async function unstakeNFT(
       { pubkey: keeper, isSigner: false, isWritable: true },
       { pubkey: keeperAta, isSigner: false, isWritable: true },
       { pubkey: stakerStoragePubkey, isSigner: false, isWritable: true },
+      { pubkey: extendStakerStoragePubkey, isSigner: false, isWritable: true },
       { pubkey: SystemProgram.programId, isSigner: false, isWritable: false },
       { pubkey: SYSVAR_RENT_PUBKEY, isSigner: false, isWritable: false },
       { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },

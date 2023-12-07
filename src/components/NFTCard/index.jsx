@@ -11,7 +11,7 @@ import { getStakedNFTList, unstakeNft } from "../../state/stakedNFT";
 import { getPoints } from "../../state/points";
 
 import { PublicKey } from "@solana/web3.js";
-import { getButtonText, BUTTON_TYPE } from "../../utils";
+import { getButtonText, BUTTON_TYPE, getNFTStakingType } from "../../utils";
 import { getFirstStakeInfo } from '../../utils/staking';
 
 const generateDispatchAction = (action, postActionArr) => {
@@ -59,6 +59,7 @@ const NftCard = (props) => {
 
   const dispatch = useDispatch();
   const { image, name } = metaData || {};
+  
   const wallet = useWallet();
 
   let buttonStyle= {};
@@ -84,16 +85,27 @@ const NftCard = (props) => {
       }
     }
 
+
     try {
+      const params = {
+        wallet,
+        mintNFTPublicKey: new PublicKey(mintKey),
+
+      }
+
+      if(type === BUTTON_TYPE.STAKE) {
+        const typeAttribute = ((metaData.attributes || []).find(attr => attr['trait_type'] === 'type')) || {};
+        const NFTType = typeAttribute.value;
+        params.tokenType = getNFTStakingType(NFTType);
+      }
+
       const action = getButtonAction(type);
-      //normal case
       dispatch(
-        action({
-          wallet,
-          mintNFTPublicKey: new PublicKey(mintKey),
-        })
+        action(params)
       );
-    } catch (exception) {}
+    } catch (exception) {
+      console.log('Exception when click card', exception)
+    }
   };
 
   if (currentProcessKey === mintKey) {
