@@ -65,10 +65,6 @@ const Reward = () => {
     return _list;
   }, [mergedRewardNft]);
 
-  if (isMobile) {
-    return null;
-  }
-
   let content = (
     <div className={styles.nftList}>
       {finalNFTList.map((item, key) => {

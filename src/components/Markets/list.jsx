@@ -10,12 +10,12 @@ const teams = [
     link: "https://digitaleyes.market/collections/MadTrooper",
     desc: "DigitalEyes Market",
   },
-  {
-    id: 11,
-    image: img11,
-    link: "https://solshop.io/madtrooper",
-    desc: "SolShop",
-  },
+  // {
+  //   id: 11,
+  //   image: img11,
+  //   link: "https://solshop.io/madtrooper",
+  //   desc: "SolShop",
+  // },
   {
     id: 12,
     image: solsea,

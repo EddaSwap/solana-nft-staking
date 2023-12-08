@@ -70,7 +70,8 @@ const BuyNow = ({ markets }) => {
             Stake upto 10 MadTrooper NFTs.
           </p>
           <p className={styles.instructionText}>
-            Each MadTrooper NFT earns 1 Plomo every 24 hours.
+          Earn the following points every 24 hours as per your MadTrooper NFT Category:
+          Trooper - 1 Plomo, Sergeant - 2 Plomo, Commander - 3 Plomo and Legendary Master - 4 Plomo.
           </p>
           {totalStakedComponent}
         </div>

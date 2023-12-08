@@ -26,7 +26,6 @@ import MUISnackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import Stats from "../../components/Stats";
 
-
 const network = process.env.REACT_APP_SOLANA_NETWORK;
 
 function Alert(props) {
@@ -37,10 +36,13 @@ export default function Components(props) {
   const [showSnackbar, setShowSnackbar] = useState(true);
   const endpoint = useMemo(() => clusterApiUrl(network), []);
 
-  const wallets = useMemo(
-    () => [getPhantomWallet(), getSolflareWallet(), getSolletWallet()],
-    []
-  );
+  const wallets = useMemo(() => {
+    if (isMobile) {
+      return [getPhantomWallet()];
+    } else {
+      return [getPhantomWallet(), getSolflareWallet(), getSolletWallet()];
+    }
+  }, []);
   return (
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
@@ -57,28 +59,7 @@ export default function Components(props) {
             }}
             {...props}
           />
-          {isMobile && (
-            <MUISnackbar
-              open={showSnackbar}
-              autoHideDuration={6000}
-              onClose={() => setShowSnackbar(false)}
-            >
-              <Alert
-                onClose={() => setShowSnackbar(false)}
-                severity="error"
-                sx={{ width: "100%" }}
-              >
-                Currently we only support Phantom, Solflare and Sollet wallet.
-                Please use Google Chrome desktop version with the extensions.
-              </Alert>
-            </MUISnackbar>
-          )}
-          {!isMobile && (
-            <>
-              <Stats />
-             
-            </>
-          )}
+          <Stats />
           <Footer />
         </div>
       </WalletProvider>

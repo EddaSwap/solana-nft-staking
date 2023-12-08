@@ -6,7 +6,8 @@ import { isMobile } from "react-device-detect";
 import "react-slideshow-image/dist/styles.css";
 
 import { MOBILE_WIDTH, getWindowDimensions } from "../../utils";
-import AlertCircle from 'assets/img/alert-circle.svg';
+import AlertCircle from "assets/img/alert-circle.svg";
+import Mint from "views/Mint/index.js";
 
 const customStyle = {
   slideContainer: {
@@ -46,10 +47,23 @@ const IntroVideo = () => {
                 <p className={styles.subTitle}>{slideImage.subTitle} </p>
                 <p className={styles.desc}>{slideImage.desc} </p>
                 <div className={styles.appAlert}>
-                  <img className={styles.iconAlert} src={AlertCircle} alt='Alert'></img>
-                  <p className={styles.alertText} >Project is in beta, use at your own risk</p>
+                  <img
+                    className={styles.iconAlert}
+                    src={AlertCircle}
+                    alt="Alert"
+                  ></img>
+                  <p className={styles.alertText}>
+                    Project is in beta, use at your own risk
+                  </p>
                 </div>
-                {!isMobile && (<p className={styles.desc2}>{slideImage.desc2} </p>)}
+                {!isMobile && (
+                  <p className={styles.desc2}>{slideImage.desc2} </p>
+                )}
+                {isMobile && (
+                  <div style={{ marginTop: "40px" }}>
+                    <Mint />
+                  </div>
+                )}
               </div>
             </div>
           );

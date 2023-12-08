@@ -62,9 +62,11 @@ const getTokenWallet = async (mintKey) => {
 
 const getTokenOwner = async (userPublicKey, mintKey) => {
   try {
-
-    const response = await connection.getTokenAccountsByOwner(userPublicKey, { mint: mintKey } );
-    const address = response.value[0].pubkey.toBase58();
+    const response = await connection.getTokenAccountsByOwner(userPublicKey, {
+      mint: mintKey,
+    });
+    // const address = response.value[0].pubkey.toBase58();
+    const address = response.value[0].pubkey;
 
     return address;
   } catch(error) {

@@ -10,6 +10,20 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import styles from "./index.module.scss";
 
+import { isMobile } from "react-device-detect";
+
+const constructAddress = (address) => {
+  if (isMobile && typeof address === "string") {
+    const length = address?.length;
+    return `${address.substring(0, 4)}....${address.substring(
+      length - 4,
+      length
+    )}`;
+  }
+
+  return address;
+};
+
 const useStyles = makeStyles({
   table: {
     minWidth: 600,
@@ -102,7 +116,7 @@ export default function BasicTable(props) {
                           rel="noopener noreferrer"
                           href={`https://solscan.io/account/${row.address}`}
                         >
-                          {row.address}
+                          {constructAddress(row.address)}
                         </a>
                       </TableCell>
                       <TableCell align="center" className={styles.statItem}>

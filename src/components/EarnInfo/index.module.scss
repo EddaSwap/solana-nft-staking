@@ -69,7 +69,6 @@
     padding: 0px;
     width: 200px;
     min-height: 185px;
-    
 
     /* Main/Dark/Black More */
 
@@ -86,5 +85,96 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+  }
+}
+
+.mobile-container {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../assets/img/introVideo/1.jpeg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  min-height: 400px;
+  gap: 20px;
+
+  .mobile-reward {
+    font-family: Exo;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 110%;
+    /* or 79px */
+
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    margin-top: 90px;
+  }
+
+  .mobile-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    width: 160px;
+    min-height: 100px;
+
+    /* Main/Dark/Black More */
+
+    background: #23262f;
+    /* Shadow 1 */
+
+    box-shadow: 0px 64px 64px rgba(31, 47, 70, 0.12);
+    border-radius: 24px;
+
+    .mobile-desc {
+      font-family: Exo;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 150%;
+      /* identical to box height, or 24px */
+
+      color: #ffffff;
+    }
+
+    .mobile-point-container {
+      width: 450px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    .mobile-img {
+      width: 24px;
+      height: 24px;
+    }
+    .mobile-points {
+      height: 72px;
+  
+      font-family: Exo;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 48px;
+      line-height: 150%;
+      /* identical to box height, or 72px */
+  
+      text-align: center;
+  
+      /* Main/Dark/White */
+  
+      color: #fcfcfd;
+  
+      /* Inside Auto Layout */
+  
+      flex: none;
+      order: 1;
+      flex-grow: 0;
+      margin: 0px 16px;
+    }
   }
 }

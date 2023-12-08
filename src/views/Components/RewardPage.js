@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { isMobile } from "react-device-detect";
 import {
   ConnectionProvider,
@@ -30,10 +30,25 @@ function Alert(props) {
 export default function Components(props) {
   const [showSnackbar, setShowSnackbar] = useState(true);
   const endpoint = useMemo(() => clusterApiUrl(network), []);
-  const wallets = useMemo(
-    () => [getPhantomWallet(), getSolflareWallet(), getSolletWallet()],
-    []
-  );
+  const [isPhantomInstalled, setIsPhantomInstalled] = useState(null);
+
+  const wallets = useMemo(() => {
+    if (isMobile) {
+      return [getPhantomWallet()];
+    } else {
+      return [getPhantomWallet(), getSolflareWallet(), getSolletWallet()];
+    }
+  }, []);
+
+  useEffect(() => {
+    let timeout = setTimeout(() => {
+      const isPhantomInstalled =
+        window.phantom?.solana?.isPhantom || window.solana?.isPhantom;
+      setIsPhantomInstalled(!!isPhantomInstalled);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <ConnectionProvider endpoint={endpoint}>
@@ -51,10 +66,10 @@ export default function Components(props) {
             }}
             {...props}
           />
-          {isMobile && (
+          {isMobile && isPhantomInstalled === false && (
             <MUISnackbar
               open={showSnackbar}
-              autoHideDuration={6000}
+              autoHideDuration={20000}
               onClose={() => setShowSnackbar(false)}
             >
               <Alert
@@ -62,8 +77,13 @@ export default function Components(props) {
                 severity="error"
                 sx={{ width: "100%" }}
               >
-                Currently we only support Phantom, Solflare and Sollet wallet.
-                Please use Google Chrome desktop version with the extensions.
+                To access phantom wallet for mobile users. Open the Phantom
+                Wallet app, and enter{" "}
+                <span style={{ fontWeight: "700" }}>
+                  staking.madtrooper.com
+                </span>{" "}
+                in the Phantom browser. If you have already done this, then
+                close this notification and proceed!
               </Alert>
             </MUISnackbar>
           )}
