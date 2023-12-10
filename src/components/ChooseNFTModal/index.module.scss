@@ -1,0 +1,69 @@
+.nftList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading {
+  font-family: Exo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 150%;
+  /* identical to box height, or 21px */
+
+  text-transform: uppercase;
+
+  /* Main/Dark/White */
+  color: #fcfcfd;
+  margin: 0px 10px;
+}
+
+.loadingButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 120px;
+
+  width: 307px;
+  height: 45px;
+
+  border: 1.5px solid #a93bc0;
+  box-sizing: border-box;
+  border-radius: 100px;
+
+  /* Inside Auto Layout */
+  margin: 48px 0px;
+}
+
+.loadingContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.instructionContainer {
+  text-align: center;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 35.2px;
+  color: #fff;
+  margin: 30px;
+}
+
+.connectWalletContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 35.2px;
+  color: #fff;
+}

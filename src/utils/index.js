@@ -28,6 +28,7 @@ const BUTTON_TYPE = {
   STAKE: 'Stake',
   UNSTAKE: 'Unstake',
   GET_REWARD: 'Redeem',
+  BURN: 'Burn'
 }
 
 const getButtonText = (action) => {
@@ -38,6 +39,8 @@ const getButtonText = (action) => {
       return'UNSTAKE';
     case BUTTON_TYPE.GET_REWARD:
       return 'REDEEM';
+      case BUTTON_TYPE.BURN:
+        return 'BURN';  
     default:
       return ''  
   }

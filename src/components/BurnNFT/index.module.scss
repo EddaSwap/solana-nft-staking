@@ -1,0 +1,92 @@
+.container {
+  max-width: 1440px;
+  // min-height: 100vh;
+  margin: 0 auto;
+  padding: 120px 0px 20px 0px;
+
+  @media screen and (max-width: 960px) {
+    padding: 20px 0px 20px 0px;
+  }
+
+  .upper {
+    margin-bottom: 80px;
+
+    .headline {
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      margin-bottom: 40px;
+
+      .content {
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 52.8px;
+        color: #fff;
+        @media screen and (max-width: 960px) {
+          font-size: 32px;
+          line-height: 35.2px;
+        }
+      }
+    }
+  }
+}
+
+.loading {
+  font-family: Exo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 150%;
+  /* identical to box height, or 21px */
+
+  text-transform: uppercase;
+
+  /* Main/Dark/White */
+  color: #fcfcfd;
+  margin: 0px 10px;
+}
+
+.loadingButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 120px;
+
+  width: 307px;
+  height: 45px;
+
+  border: 1.5px solid #a93bc0;
+  box-sizing: border-box;
+  border-radius: 100px;
+
+  /* Inside Auto Layout */
+  margin: 48px 0px;
+}
+
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.burnNFTButton {
+  align-self: center;
+  background-color: #a93bc0 !important;
+  min-width: 300px;
+  opacity: 1;
+  height: 50px !important;
+  color: #fff;
+  border: 0;
+  line-height: 1.75;
+  border-radius: 16px;
+  padding: 10px;
+  cursor:pointer;
+  
+  .burnNFTButtonText {
+    font-weight: bold;
+    font-size: 16px;
+    font-family: "Exo2";
+    text-transform: uppercase;
+  }
+}

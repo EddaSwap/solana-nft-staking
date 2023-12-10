@@ -18,6 +18,7 @@ import Footer from "components/Footer/Footer.js";
 import HeaderStaking from "components/Header/HeaderStaking.js";
 import MUISnackbar from "@material-ui/core/Snackbar";
 import Reward from "components/Reward";
+import BurnNFT from "components/BurnNFT";
 import EarnInfo from "components/EarnInfo";
 import MuiAlert from "@material-ui/lab/Alert";
 
@@ -88,6 +89,7 @@ export default function Components(props) {
             </MUISnackbar>
           )}
           <EarnInfo />
+          <BurnNFT />
           <Reward />
           <Footer />
         </div>

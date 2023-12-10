@@ -3,7 +3,7 @@ import { closeSnackbar, enqueueSnackbar, removeSnackbar } from "./actions";
 import { claimNFT, claimSaleableNft, buyNft } from "../rewardNFT";
 import { stakeNft } from "../nft";
 import { unstakeNft } from "../stakedNFT";
-
+import { burnNFTSuccess } from '../burnNFT/actions';
 const initialState = {
   openSnackbar: false,
   notifications: [],
@@ -64,7 +64,6 @@ export default createReducer(initialState, (builder) =>
       ];
     })
     .addCase(claimSaleableNft.rejected, (state, action) => {
-      
       state.notifications = [
         ...state.notifications,
         generateNotifyData(
@@ -110,6 +109,12 @@ export default createReducer(initialState, (builder) =>
       state.notifications = [
         ...state.notifications,
         generateNotifyData("NFT unstaking failed. Please try again.", action),
+      ];
+    })
+    .addCase(burnNFTSuccess, (state, action) => {
+      state.notifications = [
+        ...state.notifications,
+        generateNotifyData("You have successfully burnt the NFT.", action),
       ];
     })
 );

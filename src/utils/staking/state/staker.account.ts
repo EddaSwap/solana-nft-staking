@@ -46,13 +46,17 @@ export class StakerStorage {
   }
 
   signedPoints = () => {
-    let isNegPoint = this.points.toString('hex').startsWith('f');
-
-    let signedPoints = isNegPoint
-      ? -this.points.neg().toTwos(64).toNumber()
-      : this.points.toNumber();
-
-    return signedPoints;
+    let isNegPoint = this.points.isNeg();
+    try {
+      let signedPoints = isNegPoint
+        ? - this.points.neg().toTwos(64).toNumber()
+        : this.points.toNumber();
+      return signedPoints;
+    } catch (error) {
+      console.log('error signedPoints',  error);
+      return this.points.neg().toTwos(64).toNumber();
+      
+    }
   };
 
   pendingPoints = () => {
@@ -73,7 +77,7 @@ export class StakerStorage {
     return points;
   };
 
-  totalPoints = () => {
+  totalPoints = () => {   
     return this.signedPoints() + this.pendingPoints();
   };
 

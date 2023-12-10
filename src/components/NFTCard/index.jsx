@@ -13,7 +13,8 @@ import { getPoints } from "../../state/points";
 import { PublicKey } from "@solana/web3.js";
 import { getButtonText, BUTTON_TYPE, getNFTStakingType } from "../../utils";
 import { getFirstStakeInfo } from '../../utils/staking';
-
+import { closeChooseNFTModal } from "state/chooseNFT/actions";
+import { openBurnNFTModal } from "state/burnNFT/actions";
 const generateDispatchAction = (action, postActionArr) => {
   return (params) => async (dispatch) => {
     try {
@@ -32,11 +33,17 @@ const stakeAndReload = generateDispatchAction(stakeNft, [
   getStakedNFTList,
   getPoints,
 ]);
+
 const unStakeAndReload = generateDispatchAction(unstakeNft, [
   getNFTList,
   getStakedNFTList,
   getPoints,
 ]);
+
+const burnNFT = generateDispatchAction(closeChooseNFTModal, [
+  openBurnNFTModal
+]);
+
 
 const getButtonAction = (type) => {
   // eslint-disable-next-line default-case
@@ -45,6 +52,8 @@ const getButtonAction = (type) => {
       return stakeAndReload;
     case BUTTON_TYPE.UNSTAKE:
       return unStakeAndReload;
+    case BUTTON_TYPE.BURN:
+      return burnNFT;
   }
 };
 
@@ -65,6 +74,7 @@ const NftCard = (props) => {
   let buttonStyle= {};
   let buttonText = getButtonText(type);
   let buttonAction = async () => {
+    console.log('buttonAction', buttonAction);
     if (type === BUTTON_TYPE.STAKE) {
       if (stakedNFTList.length >= MAX_STAKE_PER_WALLET) {
         dispatch(enqueueSnackbar({ message:  `You can stake a maximum of ${MAX_STAKE_PER_WALLET} NFTs per wallet.  Thank you.`}));

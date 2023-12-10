@@ -21,6 +21,8 @@ export const TOTAL_SUPPLY_REWARD_NFT = {
   "MadTrooper Party": 15,
   "Shaua": 20,
   "Driving through the EDDAVerse": 20,
+  "Fall before Rise": 20,
+  "Portal to EDDAVerse": 20,
 };
 
 export const SOLD_REWARD_NFT = [
@@ -392,6 +394,18 @@ export const SOLD_REWARD_NFT = [
   },
   {
     metaData: {"name":"Driving through the EDDAVerse","symbol":"NFTPro","description":"Buckle up! MadTrooper is behind the wheel","seller_fee_basis_points":500,"image":"https://www.arweave.net/XGR3VLYfs2F7XidY4pKoGcuM6YJWX68BrscDiZRdEhE?ext=jpg","attributes":[],"external_url":"","properties":{"files":[{"uri":"https://www.arweave.net/zhKrzNXXp6x0LnxiWuX9CmygIJVN0aAD1cKaaHyypeA?ext=mp4","type":"video/mp4"}],"category":"video","creators":[{"address":"J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz","verified":true,"share":100}]},"animation_url":"https://www.arweave.net/0HZq6K7wUBhHeqWLYKLpGiN5zS_jSCo-lZxQUnhSirg?ext=mp4"},
+    mintKey: null,
+    points: 700,
+    price: 15,
+  },
+  {
+    metaData: {"name":"Fall before Rise","symbol":"NFTPro","description":"What defines us is how well we rise after falling","seller_fee_basis_points":500,"image":"https://www.arweave.net/PB1Xuszje7d-3UVCjf6Vzw1tDbdz6K0EuVqSJY5kNZA?ext=jpg","attributes":[],"external_url":"","properties":{"files":[{"uri":"https://www.arweave.net/kw26aVlRci7yv-0bfF-Zc3C1ZaN5cAFip9b3hoyh34w?ext=mp4","type":"video/mp4"}],"category":"video","creators":[{"address":"J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz","verified":true,"share":100}]},"animation_url":"https://www.arweave.net/5tA_YRL_tyX2f2_DcQR0BbShi39ReXSM9wCTLGAwkWk?ext=mp4"},
+    mintKey: null,
+    points: 700,
+    price: 15,
+  },
+   {
+    metaData: {"name":"Portal to EDDAVerse","symbol":"NFTPro","description":"Through the portals of silence the healing sun of wisdom and peace will shine upon you.","seller_fee_basis_points":500,"image":"https://www.arweave.net/FpxwvtRAqvxDgePVVB5RB40Xse5dGQIEK0gzF1MBAtc?ext=jpg","attributes":[],"external_url":"","properties":{"files":[{"uri":"https://www.arweave.net/n99w4yjjbWruHMSS21ljrZsO4L_fvp671R7Y5qhINL4?ext=mp4","type":"video/mp4"}],"category":"video","creators":[{"address":"J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz","verified":true,"share":100}]},"animation_url":"https://www.arweave.net/l4HrCkbU33W7CQCjhcHM5J3Lp-tsj1Yqh5k0rTsN6Yk?ext=mp4"},
     mintKey: null,
     points: 700,
     price: 15,
