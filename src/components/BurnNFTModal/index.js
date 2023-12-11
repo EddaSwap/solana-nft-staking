@@ -1,22 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Modal from "react-modal";
-import styles from "./index.module.scss";
-
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useDispatch } from "react-redux";
-import { closeBurnNFTModal, burnNFTSuccess  } from "state/burnNFT/actions";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import { Field, Form } from "react-final-form";
 
-
-import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-
-import { Field, Form } from 'react-final-form';
-import { countries } from '../../constants/countries';
+import styles from "./index.module.scss";
+import { closeBurnNFTModal, burnNft } from "state/burnNFT/actions";
+import { countries } from "../../constants/countries";
 
 const modalStyle = {
   content: {
@@ -39,45 +36,66 @@ const modalStyle = {
   },
 };
 
-
-
 const useStyles = makeStyles((theme) => ({
   burnButton: {
-    marginTop: '10px',
-    width: '300px',
-    height: '50px !important',
-    borderRadius: '16px',
-    backgroundColor: '#a93bc0',
-    '&:hover': {
-      backgroundColor: '#a93bc0',
+    width: "250px",
+    height: "50px !important",
+    borderRadius: "16px",
+    backgroundColor: "#a93bc0",
+    margin: "10px",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "#a93bc0",
       opacity: 0.9,
-      transform: 'scale(1.05)',
+      transform: "scale(1.05)",
     },
   },
-  burnButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontFamily: 'Exo',
-    fontStyle: 'normal',
-    fontSize: '16px',
-    lineHeight: '150%'
+  resetButton: {
+    marginTop: "10px",
+    width: "250px",
+    height: "50px !important",
+    borderRadius: "16px",
+    backgroundColor: "white",
+    margin: "10px",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "white",
+      opacity: 0.9,
+      transform: "scale(1.05)",
+    },
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "bold",
+    fontFamily: "Exo",
+    fontStyle: "normal",
+    fontSize: "16px",
+    lineHeight: "150%",
+  },
+  resetText: {
+    color: "#a93bc0",
+    fontWeight: "bold",
+    fontFamily: "Exo",
+    fontStyle: "normal",
+    fontSize: "16px",
+    lineHeight: "150%",
   },
   buttons: {
-    display: 'flex',
+    display: "flex",
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     marginTop: `20px !important`,
   },
   fieldError: {
-    borderColor: 'red',
+    borderColor: "red",
   },
   fieldInputContainer: {
     fontFamily: "Exo",
-    display: 'flex',
-    flexDirection: 'column !important',
-    width: '70%',
-    color: 'white'
+    display: "flex",
+    flexDirection: "column !important",
+    width: "70%",
+    color: "white",
   },
   fieldContainer: {
     marginTop: 20,
@@ -85,12 +103,12 @@ const useStyles = makeStyles((theme) => ({
   errorText: {
     fontFamily: "Exo",
     fontSize: 13,
-    fontWeight: '500',
-    color: '#a93bc0',
-    maxHeight: '20px'
+    fontWeight: "500",
+    color: "#a93bc0",
+    maxHeight: "20px",
   },
   countrySelect: {
-    width: '100%',
+    width: "100%",
   },
   countryFlag: {
     width: 40,
@@ -99,22 +117,27 @@ const useStyles = makeStyles((theme) => ({
   countryInput: {
     fontFamily: "Exo",
     fontSize: 13,
-    fontWeight: '500',
-    color: '#a93bc0',
+    fontWeight: "500",
+    color: "#a93bc0",
   },
   burnSlogan: {
     fontFamily: "Exo",
     fontWeight: 600,
-    color: '#a93bc0',
-    textAlign: 'center',
+    color: "#a93bc0",
+    textAlign: "center",
     marginTop: theme.spacing(1),
   },
 }));
 
-const required = (value) => (value ? undefined : 'Required');
-const mustBeNumber = (value) => (isNaN(value) ? 'Must be a number' : undefined);
-const composeValidators = (...validators) => (value) =>
-  validators.reduce((error, validator) => error || validator(value), undefined);
+const required = (value) => (value ? undefined : "Required");
+const mustBeNumber = (value) => (isNaN(value) ? "Must be a number" : undefined);
+const composeValidators =
+  (...validators) =>
+  (value) =>
+    validators.reduce(
+      (error, validator) => error || validator(value),
+      undefined
+    );
 
 const CountrySelect = ({ input, meta }) => {
   const classes = useStyles();
@@ -122,7 +145,7 @@ const CountrySelect = ({ input, meta }) => {
     <React.Fragment>
       <Select
         labelId="burn-country-select-label"
-        className={styles['burn-country-select']}
+        className={styles["burn-country-select"]}
         value={input.value}
         onChange={input.onChange}
         name="country"
@@ -137,31 +160,64 @@ const CountrySelect = ({ input, meta }) => {
               srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
               alt={option.code}
             />
-            <div className={classes.countryInput} >{option.label} ({option.code}) +{option.phone}</div>
+            <div className={classes.countryInput}>
+              {option.label} ({option.code}) +{option.phone}
+            </div>
           </MenuItem>
         ))}
       </Select>
-      {meta.error && meta.touched && <span className={classes.errorText}>{meta.error}</span>}
+      {meta.error && meta.touched && (
+        <span className={classes.errorText}>{meta.error}</span>
+      )}
     </React.Fragment>
   );
 };
 const BurnForm = (props) => {
   let formData = {
-    name: '',
-    phone: '',
-    address: '',
-    postalCode: '',
-    country: '',
+    name: "",
+    phone: "",
+    address: "",
+    postalCode: "",
+    country: "",
   };
 
-  const handleSubmit = props.handleSubmit;
-  const submiting = false;
+  const wallet = useWallet();
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.burnNFT);
+  
+
+  const { currentBurnNFT, burnProcessing } = data || {};
+
+  const handleSubmit = () => {};
+  const _handleSubmit = (userInfo) => {
+    console.log('userINfo', userInfo);
+    const {
+      name,
+      phone,
+      address,
+      postCode,
+      country
+    }  = userInfo;
+    
+    const burnUserInfo = {
+      name,
+      phone,
+      address,
+      postCode,
+      country
+    }
+    
+    dispatch(burnNft({ wallet, mintNFTPublicKey: currentBurnNFT, userInfo: burnUserInfo }));
+  };
+
+  const submiting = burnProcessing === 'processing';
   const classes = useStyles();
 
   return (
     <div className={styles.wrapper}>
       <Typography className={classes.burnSlogan}>
-        Enter your postal address and receive the coin at your doorstep for free!
+        Enter your postal address and receive the coin at your doorstep for
+        free!
       </Typography>
       <Form
         onSubmit={handleSubmit}
@@ -173,22 +229,34 @@ const BurnForm = (props) => {
             <Field name="name" validate={required}>
               {({ input, meta }) => (
                 <div className={classes.fieldContainer}>
-                  <label >Name</label>
+                  <label>Name</label>
                   <div className={classes.fieldInputContainer}>
-                    <input className={classes.field} {...input} type="text" placeholder="Name"/>
-                    {meta.error && meta.touched && <span className={classes.errorText}>{meta.error}</span>}
+                    <input
+                      className={classes.field}
+                      {...input}
+                      type="text"
+                      placeholder="Name"
+                    />
+                    {meta.error && meta.touched && (
+                      <span className={classes.errorText}>{meta.error}</span>
+                    )}
                   </div>
                 </div>
               )}
             </Field>
 
-            <Field name="phone" validate={composeValidators(required, mustBeNumber)}>
+            <Field
+              name="phone"
+              validate={composeValidators(required, mustBeNumber)}
+            >
               {({ input, meta }) => (
                 <div className={classes.fieldContainer}>
                   <label>Phone Number</label>
                   <div className={classes.fieldInputContainer}>
                     <input {...input} type="text" placeholder="Phone Number" />
-                    {meta.error && meta.touched && <span className={classes.errorText}>{meta.error}</span>}
+                    {meta.error && meta.touched && (
+                      <span className={classes.errorText}>{meta.error}</span>
+                    )}
                   </div>
                 </div>
               )}
@@ -199,8 +267,14 @@ const BurnForm = (props) => {
                 <div className={classes.fieldContainer}>
                   <label>Street & Number</label>
                   <div className={classes.fieldInputContainer}>
-                    <input {...input} type="text" placeholder="Street & Number" />
-                    {meta.error && meta.touched && <span className={classes.errorText}>{meta.error}</span>}
+                    <input
+                      {...input}
+                      type="text"
+                      placeholder="Street & Number"
+                    />
+                    {meta.error && meta.touched && (
+                      <span className={classes.errorText}>{meta.error}</span>
+                    )}
                   </div>
                 </div>
               )}
@@ -210,8 +284,14 @@ const BurnForm = (props) => {
                 <div className={classes.fieldContainer}>
                   <label>Postal Code - City & State (If applicable)</label>
                   <div className={classes.fieldInputContainer}>
-                    <input {...input} type="text" placeholder="Postal Code - City & State" />
-                    {meta.error && meta.touched && <span className={classes.errorText}>{meta.error}</span>}
+                    <input
+                      {...input}
+                      type="text"
+                      placeholder="Postal Code - City & State"
+                    />
+                    {meta.error && meta.touched && (
+                      <span className={classes.errorText}>{meta.error}</span>
+                    )}
                   </div>
                 </div>
               )}
@@ -220,12 +300,16 @@ const BurnForm = (props) => {
             <div className={classes.fieldContainer}>
               <label>Country</label>
               <div className={classes.fieldInputContainer}>
-                <Field name="country" validate={required} component={CountrySelect} />
+                <Field
+                  name="country"
+                  validate={required}
+                  component={CountrySelect}
+                />
               </div>
             </div>
             <div className={classes.buttons}>
               <Button
-                onClick={handleSubmit}
+                onClick={() => _handleSubmit(form.getState().values)}
                 type="submit"
                 disabled={submitting || pristine}
                 className={classes.burnButton}
@@ -233,13 +317,22 @@ const BurnForm = (props) => {
                 {submiting ? (
                   <CircularProgress size={20} />
                 ) : (
-                  <Typography variant="h4" className={classes.burnButtonText}>
+                  <Typography variant="h4" className={classes.buttonText}>
                     Submit
                   </Typography>
                 )}
               </Button>
-              <Button type="button" onClick={form.reset} disabled={submitting || pristine}>
-                Reset
+              <Button
+                type="button"
+                className={classes.resetButton}
+                onClick={() => {
+                  form.reset();
+                }}
+                disabled={submitting || pristine}
+              >
+                <Typography variant="h4" className={classes.resetText}>
+                  Reset
+                </Typography>
               </Button>
             </div>
           </form>
@@ -249,9 +342,7 @@ const BurnForm = (props) => {
   );
 };
 
-
-const BurnNFTModal = (props) => {
-  const wallet = useWallet();
+const BurnNFTModal = () => {
   const dispatch = useDispatch();
   const modalData = useSelector((state) => state.burnNFT);
   const { isOpenModal } = modalData;
@@ -263,16 +354,11 @@ const BurnNFTModal = (props) => {
       contentLabel="Burn NFT Modal"
       onRequestClose={() => dispatch(closeBurnNFTModal())}
     >
-          <div className={styles.connectWalletContainer}>
-      <BurnForm 
-        handleSubmit={()=> {dispatch(burnNFTSuccess())}}
-      />
-    </div>
+      <div className={styles.connectWalletContainer}>
+        <BurnForm />
+      </div>
     </Modal>
   );
 };
-
-
-
 
 export default BurnNFTModal;

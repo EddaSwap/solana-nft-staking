@@ -17,6 +17,8 @@ export const getNFTList = createAsyncThunk(
     }
   }
 );
+
+
 export const stakeNft = createAsyncThunk(
   "nft/stakeNft",
   async (params, thunkAPI) => {
@@ -30,10 +32,11 @@ export const stakeNft = createAsyncThunk(
   }
 );
 
-const nftListlice = createSlice({
+const nftListSlice = createSlice({
   name: "nft",
   initialState: {
     nftList: [],
+    burnNFTList: [],
     loading: "idle",
     error: "",
     //for stake
@@ -46,14 +49,17 @@ const nftListlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getNFTList.pending, (state) => {
       state.nftList = [];
+      state.burnNFTList = [];
       state.loading = "loading";
     });
     builder.addCase(getNFTList.fulfilled, (state, { payload }) => {
-      state.nftList = payload;
+      state.nftList = payload[0];
+      state.burnNFTList = payload[1];
       state.loading = "loaded";
     });
     builder.addCase(getNFTList.rejected, (state, action) => {
       state.nftList = [];
+      state.burnNFTList = [];
       state.loading = "error";
       state.error = action.error.message;
     });
@@ -77,4 +83,4 @@ const nftListlice = createSlice({
   },
 });
 
-export default nftListlice;
+export default nftListSlice;

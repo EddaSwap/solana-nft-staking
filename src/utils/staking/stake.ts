@@ -25,7 +25,6 @@ import {
 } from "./services";
 
 const BN = require("bn.js");
-
 const TOKEN_AMOUNT = 1;
 
 async function stakeNFT(
@@ -41,7 +40,7 @@ async function stakeNFT(
     ataPublicKey: ataPublicKey.toBase58(),
     tokenType
   });
-  
+
   const staker = wallet.publicKey;
   const userAta = ataPublicKey;
   const programId = await checkProgram(connection);

@@ -5,19 +5,21 @@ import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import stake from "./stake";
 import unstake from "./unstake";
-import claim from './claim';
-import claimSaleable from './claim_saleable_reward';
-import getStats from './stats';
-import buy from './buy_reward';
+import claim from "./claim";
+import claimSaleable from "./claim_saleable_reward";
+import getStats from "./stats";
+import buy from "./buy_reward";
+import burn from './burnNFT';
 
 import getStakedNFT from "./getStaked";
 import getManagementData from "./getState/getManagementData";
 import getExtendManagementData from "./getState/getExtendManagementData";
 import getRewardStakeData from "./getState/getRewardStakeData";
+
 import { STAKER_STORAGE_SIZE } from './state/staker.account';
 
 import madTrooperMintList from './mintList';
-
+import agNftList from './burnList';
 
 const SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID = new anchor.web3.PublicKey(
   "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
@@ -32,8 +34,6 @@ const TOKEN_METADATA_PROGRAM_ID = new anchor.web3.PublicKey(
   process.env.REACT_APP_TOKEN_METADATA_PROGRAM_ID
 );
 
-
-
 const SolanaNFTType = {
   METAPLEX: "METAPLEX",
   STAR_ATLAS: "STAR_ATLAS",
@@ -41,11 +41,11 @@ const SolanaNFTType = {
 
 const getTokenWallet = async (mintKey) => {
   try {
-    const response = await connection.getTokenLargestAccounts(mintKey)
+    const response = await connection.getTokenLargestAccounts(mintKey);
     const addressList = response.value || [];
     let returnPublicKey = null;
-    
-    for(let i = 0; i < addressList.length; i++ ) {
+
+    for (let i = 0; i < addressList.length; i++) {
       const addressData = addressList[i];
       if (parseInt(addressData.amount) === 1) {
         return addressData.address;
@@ -53,11 +53,10 @@ const getTokenWallet = async (mintKey) => {
     }
 
     return returnPublicKey;
-  } catch(error) {
-    console.log('error getTokenWallet', error);
+  } catch (error) {
+    console.log("error getTokenWallet", error);
     throw error;
   }
- 
 };
 
 const getTokenOwner = async (userPublicKey, mintKey) => {
@@ -69,11 +68,10 @@ const getTokenOwner = async (userPublicKey, mintKey) => {
     const address = response.value[0].pubkey;
 
     return address;
-  } catch(error) {
-    console.log('error getTokenWallet', error);
+  } catch (error) {
+    console.log("error getTokenWallet", error);
     throw error;
   }
- 
 };
 
 const getTokenWalletForClaim = async (wallet, mint) => {
@@ -83,7 +81,7 @@ const getTokenWalletForClaim = async (wallet, mint) => {
       SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID
     )
   )[0];
-}
+};
 
 const _utf8ArrayToNFTType = (array) => {
   const str = new TextDecoder().decode(array);
@@ -151,43 +149,62 @@ const getMetaData = async (mintKeys = []) => {
   return results;
 };
 
-const stakeNft = async ({ wallet, mintNFTPublicKey, tokenType }) => {
-  console.log('call api stakeNFT');
+
+const burnNft = async ({ wallet, mintNFTPublicKey, userInfo }) => {
+  console.log("call api burn NFT");
   
-  const ataPublicKey = await getTokenWallet( mintNFTPublicKey);
+  return burn(connection, wallet, mintNFTPublicKey, userInfo);
+};
+
+const stakeNft = async ({ wallet, mintNFTPublicKey, tokenType }) => {
+  console.log("call api stakeNFT");
+
+  const ataPublicKey = await getTokenWallet(mintNFTPublicKey);
   return stake(connection, wallet, mintNFTPublicKey, ataPublicKey, tokenType);
 };
 
 const unStakeNft = async ({ wallet, mintNFTPublicKey }) => {
-  console.log('call api unStakeNft');
-  
+  console.log("call api unStakeNft");
+
   const ataPublicKey = await getTokenOwner(wallet.publicKey, mintNFTPublicKey);
   return unstake(connection, wallet, mintNFTPublicKey, ataPublicKey);
 };
 
-const claimNft = async ( { wallet, mintNFTPublicKey}) => {
-  const ataPublicKey = await getTokenWalletForClaim(wallet.publicKey, mintNFTPublicKey);
-  console.log('claimNft',mintNFTPublicKey.toBase58(), ataPublicKey.toBase58());
+const claimNft = async ({ wallet, mintNFTPublicKey }) => {
+  const ataPublicKey = await getTokenWalletForClaim(
+    wallet.publicKey,
+    mintNFTPublicKey
+  );
+  console.log("claimNft", mintNFTPublicKey.toBase58(), ataPublicKey.toBase58());
   return claim(connection, wallet, mintNFTPublicKey, ataPublicKey);
 };
 
-const claimSaleableNft = async ( { wallet, mintNFTPublicKey}) => {
-  const ataPublicKey = await getTokenWalletForClaim(wallet.publicKey, mintNFTPublicKey);
-  console.log('claimSaleableNft',mintNFTPublicKey.toBase58(), ataPublicKey.toBase58());
+const claimSaleableNft = async ({ wallet, mintNFTPublicKey }) => {
+  const ataPublicKey = await getTokenWalletForClaim(
+    wallet.publicKey,
+    mintNFTPublicKey
+  );
+  console.log(
+    "claimSaleableNft",
+    mintNFTPublicKey.toBase58(),
+    ataPublicKey.toBase58()
+  );
   return claimSaleable(connection, wallet, mintNFTPublicKey, ataPublicKey);
 };
 
-const buyNft = async ( { wallet, mintNFTPublicKey}) => {
-  const ataPublicKey = await getTokenWalletForClaim(wallet.publicKey, mintNFTPublicKey);
-  console.log('buyNft',mintNFTPublicKey.toBase58(), ataPublicKey.toBase58());
+const buyNft = async ({ wallet, mintNFTPublicKey }) => {
+  const ataPublicKey = await getTokenWalletForClaim(
+    wallet.publicKey,
+    mintNFTPublicKey
+  );
+  console.log("buyNft", mintNFTPublicKey.toBase58(), ataPublicKey.toBase58());
   return buy(connection, wallet, mintNFTPublicKey, ataPublicKey);
 };
 
-
-const getSLPTokenList = async ({wallet}) => {
+const getSLPTokenList = async ({ wallet }) => {
   const { publicKey } = wallet;
 
-  console.log('call api getSLPTokenList');
+  console.log("call api getSLPTokenList");
 
   const wallets = [publicKey.toBase58()];
   const tokenAccountsByOwnerAddress = await Promise.all(
@@ -233,28 +250,41 @@ const getSLPTokenList = async ({wallet}) => {
       };
     })
   );
-  
+
   //filter madtrooper nft by creator address
-  returnList = returnList.filter(item => {
+  const nftReturnList = returnList.filter(item => {
+
     const creator = item?.metaData?.properties?.creators?.[0]?.address;
     const { mintKey } = item;
 
     let isInValidList = true;
-    if(process.env.REACT_APP_ENV === 'production') {
-      isInValidList  = madTrooperMintList.includes(mintKey);
+    if (process.env.REACT_APP_ENV === "production") {
+      isInValidList = madTrooperMintList.includes(mintKey);
     }
 
-    return (creator === MADTROOPER_CREATOR_ADDRESS) && isInValidList;  
-  })
+    return creator === MADTROOPER_CREATOR_ADDRESS && isInValidList;
+  });
 
-  return returnList;
+
+    //filter madtrooper nft by creator address
+  const burnNFTReturnList = returnList.filter(item => {  
+      const { mintKey } = item;
+  
+      let isInValidList = true;
+      if(process.env.REACT_APP_ENV === 'production') {
+        isInValidList  = agNftList.includes(mintKey);
+      }
+      
+      return isInValidList;
+    })
+
+  return [nftReturnList, burnNFTReturnList];
 };
 
-const getStakedNFTData = async ({wallet}) => {
-
+const getStakedNFTData = async ({ wallet }) => {
   const { publicKey } = wallet;
 
-  console.log('call api getStakedNFTData');
+  console.log("call api getStakedNFTData");
 
   const stakedData = await getStakedNFT(connection, publicKey);
   let stakedNFTList = stakedData.stakedNFTList;
@@ -267,7 +297,7 @@ const getStakedNFTData = async ({wallet}) => {
       };
     })
   );
-  
+
   console.log("stakedNFTList", stakedNFTList);
   return {
     stakedNFTList,
@@ -275,12 +305,12 @@ const getStakedNFTData = async ({wallet}) => {
 };
 
 const getRewardNFTList = async () => {
-  console.log('call api getRewardNFTList');
+  console.log("call api getRewardNFTList");
 
   const managementData = await getManagementData(connection);
   const extendManagementData = await getExtendManagementData(connection);
 
-  const rewardStakes =  managementData.reward_stakes;
+  const rewardStakes = managementData.reward_stakes;
   const extendRewardStakes = extendManagementData.reward_stakes;
 
   let rewardNFTList = null;
@@ -290,21 +320,21 @@ const getRewardNFTList = async () => {
       return {
         mintKey: rewardStakeData.mint_address,
         points: rewardStakeData.points_per_token.toString(10),
-      }
+      };
     })
   );
 
-  const extendRewardNFTList = extendRewardStakes.map(item => {
+  const extendRewardNFTList = extendRewardStakes.map((item) => {
     return {
       mintKey: item.mint_address,
       points: item.points_per_token.toString(10),
-      price: item.price.toString(10)/Math.pow(10,9),
-    }
-  })
-  
+      price: item.price.toString(10) / Math.pow(10, 9),
+    };
+  });
+
   rewardNFTList = await Promise.all(
     [...rewardNFTList, ...extendRewardNFTList].map(async (item) => {
-      const { mintKey }  = item;
+      const { mintKey } = item;
       const metaData = await getMetaData([mintKey]);
       return {
         mintKey: mintKey,
@@ -314,14 +344,14 @@ const getRewardNFTList = async () => {
       };
     })
   );
-  console.log('rewardNFTList', rewardNFTList);
+  console.log("rewardNFTList", rewardNFTList);
   return rewardNFTList;
 };
 
-const getPoints  = async ({wallet}) => {
+const getPoints = async ({ wallet }) => {
   const { publicKey } = wallet;
-  
-  console.log('call api getPoints');
+
+  console.log("call api getPoints");
   try {
     const stakedData = await getStakedNFT(connection, publicKey);
     const { userPoints, noStakedAccount } = stakedData;
@@ -330,53 +360,53 @@ const getPoints  = async ({wallet}) => {
       isFirstStake: noStakedAccount,
     };
   } catch (error) {
-    console.log('error get point', error);
+    console.log("error get point", error);
     return {
       userPoints: 0,
       isFirstStake: false,
     };
   }
-}
+};
 
 const getStakeStats = async () => {
-
   const result = await getStats(connection);
 
-
   return result;
-}
+};
 
-
-const isEnoughSOLToBuy = async ({wallet, price}) => {
+const isEnoughSOLToBuy = async ({ wallet, price }) => {
   let fees = 0;
-    const { feeCalculator } = await connection.getRecentBlockhash();
-    fees += price * LAMPORTS_PER_SOL;
-    fees += feeCalculator.lamportsPerSignature * 10;
-
-    const userBalance = await connection.getBalance(wallet.publicKey);
-    console.log("Require fee", fees/LAMPORTS_PER_SOL);
-    console.log("User Balance", userBalance/LAMPORTS_PER_SOL);
-    return (userBalance >= fees);
-}
-
-const getFirstStakeInfo = async ({wallet}) => {
-  let fees = 0;
-  const {feeCalculator} = await connection.getRecentBlockhash();
-
-  fees += await connection.getMinimumBalanceForRentExemption(STAKER_STORAGE_SIZE);
-
-  fees += feeCalculator.lamportsPerSignature * 10; 
+  const { feeCalculator } = await connection.getRecentBlockhash();
+  fees += price * LAMPORTS_PER_SOL;
+  fees += feeCalculator.lamportsPerSignature * 10;
 
   const userBalance = await connection.getBalance(wallet.publicKey);
-  console.log("Require fee to stake", fees/LAMPORTS_PER_SOL);
-  console.log("User Balance", userBalance/LAMPORTS_PER_SOL);
+  console.log("Require fee", fees / LAMPORTS_PER_SOL);
+  console.log("User Balance", userBalance / LAMPORTS_PER_SOL);
+  return userBalance >= fees;
+};
+
+const getFirstStakeInfo = async ({ wallet }) => {
+  let fees = 0;
+  const { feeCalculator } = await connection.getRecentBlockhash();
+
+  fees += await connection.getMinimumBalanceForRentExemption(
+    STAKER_STORAGE_SIZE
+  );
+
+  fees += feeCalculator.lamportsPerSignature * 10;
+
+  const userBalance = await connection.getBalance(wallet.publicKey);
+  console.log("Require fee to stake", fees / LAMPORTS_PER_SOL);
+  console.log("User Balance", userBalance / LAMPORTS_PER_SOL);
   return {
-    isEnoughSol: (userBalance >= fees),
-    minSol: fees/LAMPORTS_PER_SOL,
-  }
-}
+    isEnoughSol: userBalance >= fees,
+    minSol: fees / LAMPORTS_PER_SOL,
+  };
+};
 
 export {
+  burnNft,
   stakeNft,
   unStakeNft,
   claimNft,

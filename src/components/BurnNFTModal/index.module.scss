@@ -1,15 +1,11 @@
-
-
 .loadingButton {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 12px 120px;
-
   width: 307px;
   height: 45px;
-
   border: 1.5px solid #a93bc0;
   box-sizing: border-box;
   border-radius: 100px;
@@ -46,7 +42,6 @@
   color: #fff;
 }
 
-
 .wrapper {
   width: 100%;
   max-width: 600px;
@@ -66,7 +61,7 @@
   border: none;
   padding: 20px;
   border-radius: 3px;
-  
+
   .PhoneInputCountry {
     width: 100px;
   }
@@ -98,15 +93,15 @@
       color: white;
       border: 1px solid #ccc;
       border-radius: 3px;
-      background-color: hsla(0,0%,100%,.2);
+      background-color: hsla(0, 0%, 100%, 0.2);
     }
-    & input[type='checkbox'] {
+    & input[type="checkbox"] {
       margin-top: 7px;
     }
   }
   .burn-country-select {
     border: 1px solid #ccc;
     border-radius: 3px;
-    background-color: hsla(0,0%,100%,.2);
+    background-color: hsla(0, 0%, 100%, 0.2);
   }
 }

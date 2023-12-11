@@ -30,7 +30,7 @@ const ChooseNFTModal = (props) => {
   const data = useSelector((state) => state.NFT);
   const modalData = useSelector((state) => state.chooseNFT);
   const { isOpenModal } = modalData;
-  const { loading, nftList } = data;
+  const { loading, burnNFTList } = data;
 
   let content = null;
 
@@ -42,10 +42,10 @@ const ChooseNFTModal = (props) => {
         </div>
       </div>
     );
-  } else if (nftList.length === 0) {
+  } else if (burnNFTList.length === 0) {
     content = (
       <div className={styles.connectWalletContainer}>
-        You don't have any MadTrooper.
+        You don't have any AGs to burn.
       </div>
     );
   } else {
@@ -56,7 +56,7 @@ const ChooseNFTModal = (props) => {
           Select MadTrooper to burn
         </div>
         <div className={styles.nftList}>
-          {nftList.map((item, key) => {
+          {burnNFTList.map((item, key) => {
             return (
               <NFTCard
                 type={BUTTON_TYPE.BURN}

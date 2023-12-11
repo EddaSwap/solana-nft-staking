@@ -13,7 +13,6 @@ const BurnNFT = () => {
   const dispatch = useDispatch();
 
   const data = useSelector((state) => state.NFT);
-  
   const { loading } = data;
 
   useEffect(() => {

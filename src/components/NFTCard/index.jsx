@@ -41,7 +41,7 @@ const unStakeAndReload = generateDispatchAction(unstakeNft, [
 ]);
 
 const burnNFT = generateDispatchAction(closeChooseNFTModal, [
-  openBurnNFTModal
+  openBurnNFTModal,
 ]);
 
 
