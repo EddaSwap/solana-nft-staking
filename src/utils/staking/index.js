@@ -175,15 +175,17 @@ const claimNft = async ({ wallet, mintNFTPublicKey }) => {
     wallet.publicKey,
     mintNFTPublicKey
   );
+ 
   console.log("claimNft", mintNFTPublicKey.toBase58(), ataPublicKey.toBase58());
   return claim(connection, wallet, mintNFTPublicKey, ataPublicKey);
 };
 
 const claimSaleableNft = async ({ wallet, mintNFTPublicKey }) => {
-  const ataPublicKey = await getTokenWalletForClaim(
-    wallet.publicKey,
-    mintNFTPublicKey
+  const  ataPublicKey = await getTokenWalletForClaim(
+      wallet.publicKey,
+      mintNFTPublicKey
   );
+
   console.log(
     "claimSaleableNft",
     mintNFTPublicKey.toBase58(),
@@ -269,7 +271,6 @@ const getSLPTokenList = async ({ wallet }) => {
     //filter madtrooper nft by creator address
   const burnNFTReturnList = returnList.filter(item => {  
       const { mintKey } = item;
-  
       let isInValidList = true;
       if(process.env.REACT_APP_ENV === 'production') {
         isInValidList  = agNftList.includes(mintKey);
@@ -283,7 +284,6 @@ const getSLPTokenList = async ({ wallet }) => {
 
 const getStakedNFTData = async ({ wallet }) => {
   const { publicKey } = wallet;
-
   console.log("call api getStakedNFTData");
 
   const stakedData = await getStakedNFT(connection, publicKey);

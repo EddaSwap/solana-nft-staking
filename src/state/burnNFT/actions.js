@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import { burnNft as burnNftAPI } from "../../utils/staking";
 import { logError } from "utils";
 
@@ -12,7 +12,9 @@ export const burnNft = createAsyncThunk(
       const response = await burnNftAPI(params);
       return response;
     } catch (error) {
-      logError(error, params);
+
+      const { userInfo } = params || {};
+      logError(error, params, userInfo);
       return thunkAPI.rejectWithValue({ error: error.message });
     }
   }

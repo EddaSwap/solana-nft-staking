@@ -112,7 +112,7 @@ export default createReducer(initialState, (builder) =>
     .addCase(burnNft.fulfilled, (state, action) => {
       state.notifications = [
         ...state.notifications,
-        generateNotifyData("You have successfully burned your NFT.", action),
+        generateNotifyData("You have successfully burned your NFT. You will receive the real-world collectible at your doorstep shortly", action),
       ];
     })
     .addCase(burnNft.rejected, (state, action) => {

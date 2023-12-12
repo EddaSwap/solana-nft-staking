@@ -66,6 +66,7 @@
   "devDependencies": {
     "@babel/cli": "7.13.16",
     "@babel/plugin-proposal-class-properties": "7.13.0",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "7.14.1",
     "@babel/preset-react": "7.13.13",
     "@types/mz": "^2.7.4",

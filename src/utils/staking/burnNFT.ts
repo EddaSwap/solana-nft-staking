@@ -2,7 +2,7 @@ import { Token, TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID } from '@solana/sp
 import { Connection, PublicKey, Transaction } from '@solana/web3.js';
 import { WalletContextState } from "@solana/wallet-adapter-react";
 import { sendBurnInfo } from '../sendUserInfo';
-
+import { getFormattedPhoneNumber } from '../';
 export default async function burnTokenAndCloseAccount(connection: Connection, wallet: WalletContextState, tokenMintAddress: string, userInfo: any, amount: number = 1) {
     try {
 
@@ -44,12 +44,12 @@ export default async function burnTokenAndCloseAccount(connection: Connection, w
 
         const BurnandCloseSignature = await wallet.sendTransaction(BurnandCloseTransaction, connection);
 
-        const confirmed = await connection.confirmTransaction(BurnandCloseSignature, 'processed');
+        await connection.confirmTransaction(BurnandCloseSignature, 'processed');
         
         await sendBurnInfo({
             txHash: BurnandCloseSignature,
             name,
-            phone,
+            phone: getFormattedPhoneNumber(phone, country),
             address,
             postCode,
             country,

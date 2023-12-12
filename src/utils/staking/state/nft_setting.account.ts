@@ -1,8 +1,6 @@
-import {StringPublicKey} from './types';
 import BN from 'bn.js';
 import * as borsh from 'borsh';
 import {extendBorsh} from './borsh';
-import {PublicKey} from '@solana/web3.js';
 
 export const NFT_SETTING_SIZE = 8 * 4;
 export const NFT_SETTING_SEED = 'nft_setting_storage';

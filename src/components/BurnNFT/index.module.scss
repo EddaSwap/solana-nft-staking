@@ -2,14 +2,14 @@
   max-width: 1440px;
   // min-height: 100vh;
   margin: 0 auto;
-  padding: 120px 0px 20px 0px;
+  padding: 100px 0px 20px 0px;
 
   @media screen and (max-width: 960px) {
     padding: 20px 0px 20px 0px;
   }
 
   .upper {
-    margin-bottom: 80px;
+    margin-bottom: 50px;
 
     .headline {
       display: flex;
@@ -31,44 +31,6 @@
   }
 }
 
-.loading {
-  font-family: Exo;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 150%;
-  /* identical to box height, or 21px */
-
-  text-transform: uppercase;
-
-  /* Main/Dark/White */
-  color: #fcfcfd;
-  margin: 0px 10px;
-}
-
-.loadingButton {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 120px;
-
-  width: 307px;
-  height: 45px;
-
-  border: 1.5px solid #a93bc0;
-  box-sizing: border-box;
-  border-radius: 100px;
-
-  /* Inside Auto Layout */
-  margin: 48px 0px;
-}
-
-.loadingContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .burnNFTButton {
   align-self: center;
@@ -81,6 +43,8 @@
   line-height: 1.75;
   border-radius: 16px;
   padding: 10px;
+  margin-top: 25px;
+  margin-bottom: 45px;
   cursor:pointer;
   
   .burnNFTButtonText {
@@ -88,5 +52,15 @@
     font-size: 16px;
     font-family: "Exo2";
     text-transform: uppercase;
+  }
+
+  .burnDesc {
+    color: white;
+    font-family: Exo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 150%;
+
   }
 }

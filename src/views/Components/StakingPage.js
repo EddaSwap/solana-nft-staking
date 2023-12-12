@@ -9,7 +9,6 @@ import {
   getPhantomWallet,
   getSolflareWallet,
   getSolletWallet,
-  PhantomWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 // import {
 //   createDefaultAuthorizationResultCache,

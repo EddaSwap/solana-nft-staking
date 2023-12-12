@@ -89,7 +89,7 @@ export default function Components(props) {
             </MUISnackbar>
           )}
           <EarnInfo />
-          <BurnNFT />
+          {!isMobile && <BurnNFT />}
           <Reward />
           <Footer />
         </div>

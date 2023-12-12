@@ -40,7 +40,7 @@ const Stats = () => {
     const pubKey = wallet.publicKey.toBase58();
     for (let i = 0; i < userList.length; i++) {
       const item = userList[i];
-      if (item.staker_address == pubKey) {
+      if (item.staker_address === pubKey) {
         rank = i;
         break;
       }

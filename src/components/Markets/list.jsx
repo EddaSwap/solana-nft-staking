@@ -1,5 +1,5 @@
 import digitaleyes from "assets/img/Markets/digitaleyes.png";
-import img11 from "assets/img/Markets/11.png";
+// import img11 from "assets/img/Markets/11.png";
 import solsea from "assets/img/Markets/solsea.jpg";
 import magiceden from "assets/img/Markets/magiceden.jpg";
 
@@ -25,7 +25,7 @@ const teams = [
   {
     id: 13,
     image: magiceden,
-    link: "https://www.magiceden.io/marketplace?collection_symbol=mad_trooper  ",
+    link: "https://magiceden.io/marketplace/mad_trooper",
     desc: "Magic Eden",
   },
 ];

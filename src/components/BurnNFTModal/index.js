@@ -172,7 +172,7 @@ const CountrySelect = ({ input, meta }) => {
     </React.Fragment>
   );
 };
-const BurnForm = (props) => {
+const BurnForm = () => {
   let formData = {
     name: "",
     phone: "",
@@ -184,33 +184,32 @@ const BurnForm = (props) => {
   const wallet = useWallet();
   const dispatch = useDispatch();
   const data = useSelector((state) => state.burnNFT);
-  
 
   const { currentBurnNFT, burnProcessing } = data || {};
 
   const handleSubmit = () => {};
   const _handleSubmit = (userInfo) => {
-    console.log('userINfo', userInfo);
-    const {
-      name,
-      phone,
-      address,
-      postCode,
-      country
-    }  = userInfo;
-    
+    console.log("userINfo", userInfo);
+    const { name, phone, address, country, postalCode } = userInfo;
+
     const burnUserInfo = {
       name,
       phone,
       address,
-      postCode,
-      country
-    }
-    
-    dispatch(burnNft({ wallet, mintNFTPublicKey: currentBurnNFT, userInfo: burnUserInfo }));
+      postCode: postalCode,
+      country,
+    };
+
+    dispatch(
+      burnNft({
+        wallet,
+        mintNFTPublicKey: currentBurnNFT,
+        userInfo: burnUserInfo,
+      })
+    );
   };
 
-  const submiting = burnProcessing === 'processing';
+  const submiting = burnProcessing === "processing";
   const classes = useStyles();
 
   return (

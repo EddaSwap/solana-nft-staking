@@ -54,8 +54,10 @@ export class StakerStorage {
       return signedPoints;
     } catch (error) {
       console.log('error signedPoints',  error);
-      return this.points.neg().toTwos(64).toNumber();
-      
+      let signedPoints = !isNegPoint
+        ? - this.points.neg().toTwos(64).toNumber()
+        : this.points.toNumber();
+      return signedPoints;
     }
   };
 

@@ -51,7 +51,7 @@ export class ExtendManagementStorage {
 
   getStake = (_mint_address: string) => {
     for (let i = 0; i < this.reward_stakes.length; i++) {
-      if (this.reward_stakes[i].mint_address == _mint_address) {
+      if (this.reward_stakes[i].mint_address === _mint_address) {
         return this.reward_stakes[i];
       }
     }

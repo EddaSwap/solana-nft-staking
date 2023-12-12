@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import { isMobile } from "react-device-detect";
+
 import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./index.module.scss";
@@ -39,10 +39,10 @@ const Reward = () => {
 
   //add sold item
   const finalNFTList = useMemo(() => {
-    const _list = mergedRewardNft || [];
-
-    for (let i = 0; i < SOLD_REWARD_NFT.length; i++) {
-      const soldItem = SOLD_REWARD_NFT[i];
+    const _list = mergedRewardNft.reverse() || [];
+    const _SOLD_REWARD_NFT = SOLD_REWARD_NFT.reverse();
+    for (let i = 0; i < _SOLD_REWARD_NFT.length; i++) {
+      const soldItem = _SOLD_REWARD_NFT[i];
       let isAdd = true;
 
       for (let j = 0; j < mergedRewardNft.length; j++) {
@@ -61,7 +61,6 @@ const Reward = () => {
         _list.push(soldItem);
       }
     }
-
     return _list;
   }, [mergedRewardNft]);
 
@@ -104,9 +103,20 @@ const Reward = () => {
   );
 };
 
-const mergeRewardNft = (array) => {
+const mergeRewardNft = (_array) => {
   let mergedRewardNfts = [];
 
+  const onlyAGList = _array.filter(x => {
+    const metaData = x.metaData || '';
+    return metaData.name === 'MadTrooper AG #1' || metaData.name === 'MadTrooper AG #2';
+  });
+
+  const nonAGList  = _array.filter(x => {
+    const metaData = x.metaData || '';
+    return !(metaData.name === 'MadTrooper AG #1' || metaData.name === 'MadTrooper AG #2');
+  });
+
+  const array = [ ...nonAGList, ...onlyAGList,];
   array.forEach((item) => {
     var existing = mergedRewardNfts.filter((nft) => {
       if (!nft.metaData || !item.metaData) {
@@ -123,6 +133,7 @@ const mergeRewardNft = (array) => {
       mergedRewardNfts.push({ ...item, total: 1 });
     }
   });
+
   return mergedRewardNfts;
 };
 

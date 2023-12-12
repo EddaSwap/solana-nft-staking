@@ -32,14 +32,14 @@ export default function Footer(props) {
       <div className={classNames(classes.container, classes.mobileContainer)}>
         <div className={classes.footerContent}>
           Contact us:{" "}
-          <a href="mailto:hello@madtrooper.com" className={aClasses}>
-            hello@madtrooper.com
+          <a href="mailto:hello@eddaverse.com" className={aClasses}>
+            hello@eddaverse.com
           </a>
           <a
             className={scssStyles["social-btn"]}
             target="_blank"
             rel="noopener noreferrer"
-            href="https://discord.gg/N7tWFsdPUJ"
+            href="https://discord.gg/eddaverse"
           >
             <i className={styles.socials + " fab fa-discord"} /> DISCORD
           </a>

@@ -4,7 +4,10 @@ export const NFT_FILE_TYPE = {
 };
 
 export const BLACK_LIST_REWARD = {
-  HpT59oert8mjSmqGwLi8BLnHJVoSsXFqy4gDrm2ue2Lb: true,
+  "HpT59oert8mjSmqGwLi8BLnHJVoSsXFqy4gDrm2ue2Lb": true,
+  "E7V1SRJZcGSVFvBXzhZ3nfvmCB7YQeAxmsumuGB8keA6": true,
+  "2E3P4enex5D28zKJJiEE3JHvzZb8LzNcdsnSTBHhbKZx": true,
+  "ArBYg4uH6imRFu6nT6n6LLGzE4QSoR5ebq7DQSMxKfcR": true,
 };
 
 export const TOTAL_SUPPLY_REWARD_NFT = {
@@ -23,6 +26,14 @@ export const TOTAL_SUPPLY_REWARD_NFT = {
   "Driving through the EDDAVerse": 20,
   "Fall before Rise": 20,
   "Portal to EDDAVerse": 20,
+  "MadTrooper AG #1": 35,
+  "MadTrooper AG #2": 35,
+  "Trap": 20,
+  "Raze": 20,
+  "City Stop": 20,
+  "EDDAVerse Temple City": 20,
+  "ABDRA finds NEOM": 20,
+  "Surfing through NEOM": 10,
 };
 
 export const SOLD_REWARD_NFT = [
@@ -387,27 +398,237 @@ export const SOLD_REWARD_NFT = [
     price: 20,
   },
   {
-    metaData: {"name":"Shaua","symbol":"NFTPro","description":"The Queen of Occult Powers","seller_fee_basis_points":500,"image":"https://www.arweave.net/nJWd40sX8UfgIc5-J7ArZJ6MRTveLh2eP-uN9DvPwKk?ext=jpg","attributes":[],"external_url":"","properties":{"files":[{"uri":"https://www.arweave.net/bKWIjljc0SqlwPicUKCRu75rT-6yEmNUauJ2TCCXD3s?ext=mp4","type":"video/mp4"}],"category":"video","creators":[{"address":"J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz","verified":true,"share":100}]},"animation_url":"https://www.arweave.net/GEDxN5d_v8uDSZ7cUsvkZ6D97a_Q0nlAhtjEhDn8EaU?ext=mp4"},
+    metaData: {
+      name: "Shaua",
+      symbol: "NFTPro",
+      description: "The Queen of Occult Powers",
+      seller_fee_basis_points: 500,
+      image:
+        "https://www.arweave.net/nJWd40sX8UfgIc5-J7ArZJ6MRTveLh2eP-uN9DvPwKk?ext=jpg",
+      attributes: [],
+      external_url: "",
+      properties: {
+        files: [
+          {
+            uri: "https://www.arweave.net/bKWIjljc0SqlwPicUKCRu75rT-6yEmNUauJ2TCCXD3s?ext=mp4",
+            type: "video/mp4",
+          },
+        ],
+        category: "video",
+        creators: [
+          {
+            address: "J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz",
+            verified: true,
+            share: 100,
+          },
+        ],
+      },
+      animation_url:
+        "https://www.arweave.net/GEDxN5d_v8uDSZ7cUsvkZ6D97a_Q0nlAhtjEhDn8EaU?ext=mp4",
+    },
     mintKey: null,
     points: 500,
     price: 20,
   },
   {
-    metaData: {"name":"Driving through the EDDAVerse","symbol":"NFTPro","description":"Buckle up! MadTrooper is behind the wheel","seller_fee_basis_points":500,"image":"https://www.arweave.net/XGR3VLYfs2F7XidY4pKoGcuM6YJWX68BrscDiZRdEhE?ext=jpg","attributes":[],"external_url":"","properties":{"files":[{"uri":"https://www.arweave.net/zhKrzNXXp6x0LnxiWuX9CmygIJVN0aAD1cKaaHyypeA?ext=mp4","type":"video/mp4"}],"category":"video","creators":[{"address":"J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz","verified":true,"share":100}]},"animation_url":"https://www.arweave.net/0HZq6K7wUBhHeqWLYKLpGiN5zS_jSCo-lZxQUnhSirg?ext=mp4"},
+    metaData: {
+      name: "Driving through the EDDAVerse",
+      symbol: "NFTPro",
+      description: "Buckle up! MadTrooper is behind the wheel",
+      seller_fee_basis_points: 500,
+      image:
+        "https://www.arweave.net/XGR3VLYfs2F7XidY4pKoGcuM6YJWX68BrscDiZRdEhE?ext=jpg",
+      attributes: [],
+      external_url: "",
+      properties: {
+        files: [
+          {
+            uri: "https://www.arweave.net/zhKrzNXXp6x0LnxiWuX9CmygIJVN0aAD1cKaaHyypeA?ext=mp4",
+            type: "video/mp4",
+          },
+        ],
+        category: "video",
+        creators: [
+          {
+            address: "J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz",
+            verified: true,
+            share: 100,
+          },
+        ],
+      },
+      animation_url:
+        "https://www.arweave.net/0HZq6K7wUBhHeqWLYKLpGiN5zS_jSCo-lZxQUnhSirg?ext=mp4",
+    },
     mintKey: null,
     points: 700,
     price: 15,
   },
   {
-    metaData: {"name":"Fall before Rise","symbol":"NFTPro","description":"What defines us is how well we rise after falling","seller_fee_basis_points":500,"image":"https://www.arweave.net/PB1Xuszje7d-3UVCjf6Vzw1tDbdz6K0EuVqSJY5kNZA?ext=jpg","attributes":[],"external_url":"","properties":{"files":[{"uri":"https://www.arweave.net/kw26aVlRci7yv-0bfF-Zc3C1ZaN5cAFip9b3hoyh34w?ext=mp4","type":"video/mp4"}],"category":"video","creators":[{"address":"J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz","verified":true,"share":100}]},"animation_url":"https://www.arweave.net/5tA_YRL_tyX2f2_DcQR0BbShi39ReXSM9wCTLGAwkWk?ext=mp4"},
+    metaData: {
+      name: "Fall before Rise",
+      symbol: "NFTPro",
+      description: "What defines us is how well we rise after falling",
+      seller_fee_basis_points: 500,
+      image:
+        "https://www.arweave.net/PB1Xuszje7d-3UVCjf6Vzw1tDbdz6K0EuVqSJY5kNZA?ext=jpg",
+      attributes: [],
+      external_url: "",
+      properties: {
+        files: [
+          {
+            uri: "https://www.arweave.net/kw26aVlRci7yv-0bfF-Zc3C1ZaN5cAFip9b3hoyh34w?ext=mp4",
+            type: "video/mp4",
+          },
+        ],
+        category: "video",
+        creators: [
+          {
+            address: "J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz",
+            verified: true,
+            share: 100,
+          },
+        ],
+      },
+      animation_url:
+        "https://www.arweave.net/5tA_YRL_tyX2f2_DcQR0BbShi39ReXSM9wCTLGAwkWk?ext=mp4",
+    },
     mintKey: null,
     points: 700,
     price: 15,
   },
-   {
-    metaData: {"name":"Portal to EDDAVerse","symbol":"NFTPro","description":"Through the portals of silence the healing sun of wisdom and peace will shine upon you.","seller_fee_basis_points":500,"image":"https://www.arweave.net/FpxwvtRAqvxDgePVVB5RB40Xse5dGQIEK0gzF1MBAtc?ext=jpg","attributes":[],"external_url":"","properties":{"files":[{"uri":"https://www.arweave.net/n99w4yjjbWruHMSS21ljrZsO4L_fvp671R7Y5qhINL4?ext=mp4","type":"video/mp4"}],"category":"video","creators":[{"address":"J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz","verified":true,"share":100}]},"animation_url":"https://www.arweave.net/l4HrCkbU33W7CQCjhcHM5J3Lp-tsj1Yqh5k0rTsN6Yk?ext=mp4"},
+  {
+    metaData: {
+      name: "Portal to EDDAVerse",
+      symbol: "NFTPro",
+      description:
+        "Through the portals of silence the healing sun of wisdom and peace will shine upon you.",
+      seller_fee_basis_points: 500,
+      image:
+        "https://www.arweave.net/FpxwvtRAqvxDgePVVB5RB40Xse5dGQIEK0gzF1MBAtc?ext=jpg",
+      attributes: [],
+      external_url: "",
+      properties: {
+        files: [
+          {
+            uri: "https://www.arweave.net/n99w4yjjbWruHMSS21ljrZsO4L_fvp671R7Y5qhINL4?ext=mp4",
+            type: "video/mp4",
+          },
+        ],
+        category: "video",
+        creators: [
+          {
+            address: "J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz",
+            verified: true,
+            share: 100,
+          },
+        ],
+      },
+      animation_url:
+        "https://www.arweave.net/l4HrCkbU33W7CQCjhcHM5J3Lp-tsj1Yqh5k0rTsN6Yk?ext=mp4",
+    },
     mintKey: null,
     points: 700,
     price: 15,
+  },
+  {
+    metaData: {
+      name: "MadTrooper AG #1",
+      symbol: "NFTPro",
+      description:
+        "MadTrooper silver coin NFT. Burn the NFT to receive the actual (0.999 quality) silver coins.",
+      seller_fee_basis_points: 500,
+      image:
+        "https://www.arweave.net/cUZO2BwQ4OikIEUCS-A_bbl2juQ8F_czURIWl3tLkWU?ext=PNG",
+      attributes: [],
+      external_url: "",
+      properties: {
+        files: [
+          {
+            uri: "https://www.arweave.net/u9UqvyCWThVosMDA7gm3o1qzfkG3OHVMR3UPOrtzJpI?ext=PNG",
+            type: "image/png",
+          },
+        ],
+        category: "image",
+        creators: [
+          {
+            address: "J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz",
+            verified: true,
+            share: 100,
+          },
+        ],
+      },
+    },
+    mintKey: null,
+    points: 1100,
+    price: 75,
+  },
+  {
+    metaData: {
+      name: "MadTrooper AG #2",
+      symbol: "NFTPro",
+      description:
+        "MadTrooper silver coin NFT. Burn the NFT to receive the actual (0.999 quality) silver coins.",
+      seller_fee_basis_points: 500,
+      image:
+        "https://www.arweave.net/UDCCJs6IY8Y2iE10MFYEJaOL88CEbUILeBx36WhLG_8?ext=PNG",
+      attributes: [],
+      external_url: "",
+      properties: {
+        files: [
+          {
+            uri: "https://www.arweave.net/9KQ__0EGb2rTzSPENhc0Dwpsjszdsm42Wgr0geFrP6Y?ext=PNG",
+            type: "image/png",
+          },
+        ],
+        category: "image",
+        creators: [
+          {
+            address: "J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz",
+            verified: true,
+            share: 100,
+          },
+        ],
+      },
+    },
+    mintKey: null,
+    points: 1100,
+    price: 75,
+  },
+  {
+    metaData: {"name":"Trap","symbol":"NFTPro","description":"Ignore the noise and keep building","seller_fee_basis_points":500,"image":"https://www.arweave.net/XbLEzdzDpqzbJba1AyiCVkePKfakH7r4FJompZ_sijU?ext=jpg","attributes":[],"external_url":"","properties":{"files":[{"uri":"https://www.arweave.net/mwnymd_9shuRvlS4a9iG0u2q0nShSmbCiGAw345faWY?ext=mp4","type":"video/mp4"}],"category":"video","creators":[{"address":"J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz","verified":true,"share":100}]},"animation_url":"https://www.arweave.net/UPAr-L4r0EQNEXmwIyLTYGXVu5pAnVl-tQx3Elh4CUE?ext=mp4"},
+    mintKey: null,
+    points: 500,
+    price: 15,
+  },
+  {
+    metaData: {"name":"Raze","symbol":"NFTPro","description":"MadTrooper crash lands on planet Tzukanda. He has no idea who is watching over him there","seller_fee_basis_points":500,"image":"https://www.arweave.net/qIVYaXAhX2QKstP-FU-FL47vAjx1lLcHAO6uksS7Bh4?ext=jpg","attributes":[],"external_url":"","properties":{"files":[{"uri":"https://www.arweave.net/7hJFOXGH0MmU3Ee0RdZ5b10Dl6oXuOsf0MiqGh9K-4c?ext=mp4","type":"video/mp4"}],"category":"video","creators":[{"address":"J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz","verified":true,"share":100}]},"animation_url":"https://www.arweave.net/Ee8TjGA76LGqEijWCUEdmK3KN4YcBTz4If1goX8fIiw?ext=mp4"},
+    mintKey: null,
+    points: 500,
+    price: 15,
+  },
+  {
+    metaData:{"name":"City Stop","symbol":"NFTPro","description":"Welcome to the 'City.'\nThere's only drive, determination, and more drive.","seller_fee_basis_points":500,"image":"https://www.arweave.net/4RgJKE9FI1lS6-VtSuwNJi5FPYYddNOiybNbgOLngSw?ext=jpg","attributes":[],"external_url":"","properties":{"files":[{"uri":"https://www.arweave.net/snwZfj-ngfH10OARMSEMPQhWUgxNgz7FR07rCLcVdoc?ext=mp4","type":"video/mp4"}],"category":"video","creators":[{"address":"J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz","verified":true,"share":100}]},"animation_url":"https://www.arweave.net/KZsUrtFvlpoL1ToV1qU11lQxPKdWVO9h_IkZAUIcXDU?ext=mp4"},
+    mintKey: null,
+    points: 500,
+    price: 20,
+  },
+  {
+    metaData:{"name":"EDDAVerse Temple City","symbol":"NFTPro","description":"The temple of Web3, home to the most engaging IPs.","seller_fee_basis_points":500,"image":"https://www.arweave.net/tYOFMByRikiqFiBKYZy-Wa4u2yJcUz8IaVcr-T0eGJA?ext=jpg","attributes":[],"external_url":"","properties":{"files":[{"uri":"https://www.arweave.net/FkAvmJOr6FH5QcCv5ux7scPWT07Pu88_P1XLrsG9RH8?ext=mp4","type":"video/mp4"}],"category":"video","creators":[{"address":"J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz","verified":true,"share":100}]},"animation_url":"https://www.arweave.net/zOI5xUj8LmXT6gaCrLxWrvamaXcp4kalQsy8CUhqkgo?ext=mp4"},
+    mintKey: null,
+    points: 500,
+    price: 20,
+  },
+  {
+    metaData:{"name":"ABDRA finds NEOM","symbol":"NFTPro","description":"While traversing through the intergalactic highways, ABDRA finds NEOM. The future is here!","seller_fee_basis_points":500,"image":"https://www.arweave.net/jQ7uzJIJXYFyQQYKI5UhuH4QnwZmAOLLUxhLE4zkZlM?ext=PNG","attributes":[],"external_url":"","properties":{"files":[{"uri":"https://www.arweave.net/Xpvn0uakHsXSjp5WtbA2c3BnpjDRGbYaoY4zT0RD2_U?ext=mp4","type":"video/mp4"}],"category":"video","creators":[{"address":"J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz","verified":true,"share":100}]},"animation_url":"https://www.arweave.net/wHNN3r9eMe5s5diIVq6MMkpaMvh1X3DUel1BwXPXkPM?ext=mp4"},
+    mintKey: null,
+    points: 500,
+    price: 20,
+  },
+
+  {
+    metaData: {"name":"Surfing through NEOM","symbol":"NFTPro","description":"ABDRA3492 and The MadTrooper suring through NEOM in Northwestern Saudi Arabia","seller_fee_basis_points":500,"image":"https://www.arweave.net/oXcTz2SWLxcE2SEBKrulCFBB4GoxIzYYO_5X_ZBmmNE?ext=jpg","attributes":[],"external_url":"","properties":{"files":[{"uri":"https://www.arweave.net/W5gDs-JJ0RgaEko6AAFY0QdoBrZ3LqNqBOgkpWUkEAs?ext=mp4","type":"video/mp4"}],"category":"video","creators":[{"address":"J7tigPibAgnvBxTmnWNNGTTgqdh2GhPNi5ni52PiVcAz","verified":true,"share":100}]},"animation_url":"https://www.arweave.net/UbdGFRIR2HEsoIzlco0ARsyVF3vJgv-qPZ641fty2gg?ext=mp4"},
+    mintKey: null,
+    points: 800,
+    price: 30,
   }
 ];

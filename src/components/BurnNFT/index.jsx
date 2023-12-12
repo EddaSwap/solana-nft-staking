@@ -1,5 +1,5 @@
-import React, { useEffect }  from "react";
-import {  useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useWallet } from "@solana/wallet-adapter-react";
 
 import styles from "./index.module.scss";
@@ -21,7 +21,6 @@ const BurnNFT = () => {
     }
   }, [wallet, dispatch, loading]);
 
-
   return (
     <div style={{ backgroundColor: "#0E0E0E" }} id="reward">
       <div className={styles.container}>
@@ -29,10 +28,13 @@ const BurnNFT = () => {
           <div className={styles.headline}>
             <button
               className={styles.burnNFTButton}
-              onClick={() => {dispatch(openChooseNFTModal())}}
+              onClick={() => {
+                dispatch(openChooseNFTModal());
+              }}
             >
               <div className={styles.burnNFTButtonText}>Burn NFT</div>
             </button>
+            <div style={{color: "white"}} className={styles.burnDesc}> Burn the MadTrooper AG NFTs to receive the actual Silver (0.999 quality, 1 oz) coins right at your doorstep for free! </div>
           </div>
           <div>
             <ChooseNFTModal />
